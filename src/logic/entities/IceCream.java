@@ -267,6 +267,17 @@ public class IceCream extends Entity {
                 : e.getKeyCode() == KeyEvent.VK_W ? Direction.UP : Direction.NONE;
     }
 
+    /**
+     * Handles the process of casting a spell by the IceCream entity.
+     *
+     * @param id the spell identifier (0 for create, 1 for destroy)
+     * @param entities the list of entities where the spell will be cast
+     * @param i the index of the entity in the list where the spell will be
+     * cast
+     * @param x the x-coordinate position where the spell will be cast
+     * @param y the y-coordinate position where the spell will be cast
+     * @return true if the spell was successfully cast, false otherwise
+     */
     private boolean castSpell(int id, ArrayList<Entity> entities, int i, int x, int y) {
         return id == 0 ? this.addIce(i, x, y, entities) : this.removeIce(i, x, y, entities);
     }
@@ -292,7 +303,7 @@ public class IceCream extends Entity {
      * @param x the new x-coordinate position
      * @param y the new y-coordinate position
      * @return true if the new position is different from the current position,
-     *         false otherwise
+     * false otherwise
      */
     private boolean isValidMove(int x, int y) {
         return x != this.getX() || y != this.getY();
