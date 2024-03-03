@@ -1,16 +1,16 @@
 package logic.entities;
 
 import common.Constants;
-
+// An abstract base class representing entities in the game
 public abstract class BaseEntity implements IEntity {
-    private int x;
-    private int y;
-    protected int id;
-    protected String name;
-    protected int unit_size;
-    protected String imagePath;
-    protected int screen_width;
-    protected int screen_height;
+    private int x; // The x-coordinate position of the entity
+    private int y; // The y-coordinate position of the entity
+    protected int id; // The unique identifier of the entity
+    protected String name; // The name of the entity
+    protected int unit_size; // The size of a unit, used for calculations
+    protected String imagePath; // The path to the image associated with the entity
+    protected int screen_width; // The width of the screen
+    protected int screen_height; // The height of the screen
 
     public BaseEntity(String name, int id, int x, int y) {
         this.x = x;
