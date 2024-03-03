@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import common.Constants;
+import common.Constant;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
@@ -15,8 +15,7 @@ import logic.levels.Level1;
 public class FileHandler {
 
     /**
-     * it's responsible for storing an entity's information in a file.
-     * 
+     * It's responsible for storing an entity's information in a file.
      * @param entities     is an ArrayList of class Entity.
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
@@ -24,8 +23,8 @@ public class FileHandler {
 
     public void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
         StringBuilder data = new StringBuilder();
-        int rows = Constants.SCREEN_WIDTH / Constants.UNIT_SIZE;
-        int cols = Constants.SCREEN_HEIGHT / Constants.UNIT_SIZE;
+        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
+        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
         for (int j = 0; j < rows; j++) {
             for (int k = 0; k < cols; k++) {
@@ -83,8 +82,8 @@ public class FileHandler {
      * @return the updated matrix.
      */
     private int[][] getEntityValues(Entity entity, int[][] map) {
-        int x = entity.getX() / Constants.UNIT_SIZE;
-        int y = entity.getY() / Constants.UNIT_SIZE;
+        int x = entity.getPositionX() / Constant.UNIT_SIZE;
+        int y = entity.getPositionY() / Constant.UNIT_SIZE;
         int id = entity.getLevelId();
         map[x][y] = id;
         return map;

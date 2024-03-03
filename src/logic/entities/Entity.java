@@ -13,8 +13,7 @@ public class Entity extends BaseEntity {
 
     /**
      * it allows that the class who extends from entity checks the position and
-     * proub
-     * that they are inside the limits
+     * proof that they are inside the limits
      * 
      * @param x position on x-axis
      * @param y position on y-axis
@@ -39,7 +38,7 @@ public class Entity extends BaseEntity {
      */
     protected boolean canMove(int x, int y, ArrayList<Entity> entities) {
         for (Entity entity : entities) {
-            return !(entity != null && entity.getX() == x && entity.getY() == y);
+            return !(entity != null && entity.getPositionX() == x && entity.getPositionY() == y);
         }
         return this.withinBounds(x, y);
     }
@@ -57,7 +56,7 @@ public class Entity extends BaseEntity {
      */
     protected boolean canMoveIndestructible(int x, int y, ArrayList<Entity> entities) {
         for (Entity entity : entities) {
-            return !(entity != null && entity.getX() == x && entity.getY() == y);
+            return !(entity != null && entity.getPositionX() == x && entity.getPositionY() == y);
         }
         return this.withinBounds(x, y);
     }

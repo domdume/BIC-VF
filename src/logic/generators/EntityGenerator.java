@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import common.Constants;
+import common.Constant;
 import logic.entities.*;
 import logic.levels.Level;
 
@@ -47,7 +47,7 @@ public final class EntityGenerator {
          * @return the x-coordinate position of the entity
          */
         private int getX() {
-            return this.params.row * Constants.UNIT_SIZE;
+            return this.params.row * Constant.UNIT_SIZE;
         }
 
         /**
@@ -56,7 +56,7 @@ public final class EntityGenerator {
          * @return the y-coordinate position of the entity
          */
         private int getY() {
-            return this.params.col * Constants.UNIT_SIZE;
+            return this.params.col * Constant.UNIT_SIZE;
         }
 
         /**
@@ -76,8 +76,8 @@ public final class EntityGenerator {
          */
         private Map<Integer, Entity> storage() {
             Map<Integer, Entity> entityDictionary = new HashMap<>();
-            entityDictionary.put(8, new Indestructible(this.getId(), this.getX(), this.getY()));
-            entityDictionary.put(1, new Ice(this.getId(), this.getX(), this.getY()));
+            entityDictionary.put(8, new IndestructibleBlock(this.getId(), this.getX(), this.getY()));
+            entityDictionary.put(1, new IceBlock(this.getId(), this.getX(), this.getY()));
             entityDictionary.put(2, new Fruit(this.getId(), this.getX(), this.getY()));
             entityDictionary.put(3, new Fruit(this.getId(), this.getX(), this.getY()));
             entityDictionary.put(4, new Enemy(this.getId(), this.getX(), this.getY()));

@@ -24,8 +24,8 @@ public class GameOverMenu extends View {
         super(Color.WHITE);
         this.msg = "logic.common.Game Over";
         this.modal = new Modal(0.6f);
-        this.modal.setBounds(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        this.setBounds(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        this.modal.setBounds(0, 0, Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT);
+        this.setBounds(0, 0, Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT);
         this.createButtons();
         modal.add(this);
     }
@@ -35,17 +35,17 @@ public class GameOverMenu extends View {
      */
     private void createButtons() {
         this.button1 = new JButton("Restart");
-        this.button1.setBounds(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 - 60, 100, 30);
+        this.button1.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 60, 100, 30);
         this.button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button1);
 
         this.button2 = new JButton("Play Again");
-        this.button2.setBounds(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2, 100, 30);
+        this.button2.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2, 100, 30);
         this.button2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button2);
 
         this.button3 = new JButton("Exit");
-        this.button3.setBounds(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 + 60, 100, 30);
+        this.button3.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 60, 100, 30);
         this.button3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button3);
     }
@@ -84,10 +84,10 @@ public class GameOverMenu extends View {
      */
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        this.sketcher.drawText(graphics, this, Color.RED, this.msg, Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 4);
-        this.sketcher.drawText(graphics, this, Color.BLACK, "Score: " + score, Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2 + 160);
+        this.sketcher.drawText(graphics, this, Color.RED, this.msg, Constant.SCREEN_WIDTH / 2,
+                Constant.SCREEN_HEIGHT / 4);
+        this.sketcher.drawText(graphics, this, Color.BLACK, "Score: " + score, Constant.SCREEN_WIDTH / 2,
+                Constant.SCREEN_HEIGHT / 2 + 160);
     }
 
     /**
@@ -105,7 +105,6 @@ public class GameOverMenu extends View {
 
     /**
      * Returns the modal component.
-     *
      * @return The modal component.
      */
     @Override
