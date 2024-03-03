@@ -10,7 +10,6 @@ public class Modal extends View {
      *
      * @param alpha The transparency value for the modal.
      */
-    // Constructs a Modal instance with the specified transparency
     public Modal(float alpha) {
         super(Color.BLACK);
         this.setViewTransparencyValue(alpha);
