@@ -81,11 +81,11 @@ public class Game {
     }
 
     public int moveEntities() {
-        int tmp = 0;
+        int moveResult  = 0;
         for (Entity entity : this.entities) {
-            tmp = entity != null ? entity.move(this.entities) : 1;
+            moveResult  = entity != null ? entity.move(this.entities) : 1;
         }
-        return tmp;
+        return moveResult ;
     }
 
     public void startGame() {
@@ -111,18 +111,18 @@ public class Game {
     }
 
     private int handlePlayerCollitions(Entity entity) {
-        int tmp = 0;
-        boolean tmp_running = this.running;
-        for (int i = 0; i < this.entities.size() && tmp_running; i++) {
-            tmp = entity.handleCoalitions(this.entities.get(i)) instanceof Points
+        int handleResult  = 0;
+        boolean isRunning = this.running;
+        for (int i = 0; i < this.entities.size() && isRunning; i++) {
+            handleResult  = entity.handleCoalitions(this.entities.get(i)) instanceof Points
                     ? this.handleFoodCollition(i)
                     : 1;
-            tmp_running = (entity.handleCoalitions(this.entities.get(i)) instanceof Death)
+            isRunning = (entity.handleCoalitions(this.entities.get(i)) instanceof Death)
                     ? this.setAlive(false)
                     : true;
         }
-        this.setRunning(tmp_running);
-        return tmp;
+        this.setRunning(isRunning);
+        return handleResult ;
     }
 
     private int adjustLevel() {
@@ -130,30 +130,30 @@ public class Game {
         this.currentLevelIndex = this.currentLevelIndex > this.levelManager.getMaxLevel()
                 ? this.levelManager.getMaxLevel() + 1
                 : this.currentLevelIndex;
-        int tmp = this.currentLevelIndex <= this.levelManager.getMaxLevel() ? this.restartGame() : 1;
-        return tmp;
+        int levelAdjusted  = this.currentLevelIndex <= this.levelManager.getMaxLevel() ? this.restartGame() : 1;
+        return levelAdjusted ;
     }
 
     public int checkScore() {
-        int tmp = this.score == this.currentLevel.getScore() ? this.adjustLevel() : 1;
-        boolean tmp_running = this.getRunning();
+        int scoreAdjusted  = this.score == this.currentLevel.getScore() ? this.adjustLevel() : 1;
+        boolean isRunning = this.getRunning();
         // This is doing nothing but replacing a simple if .-.
-        while (tmp_running) {
-            tmp_running = this.currentLevelIndex > this.levelManager.getMaxLevel()
+        while (isRunning) {
+            isRunning = this.currentLevelIndex > this.levelManager.getMaxLevel()
                     ? this.setLastLevelCompleted(false)
                     : true;
             break;
         }
-        this.setRunning(tmp_running);
-        return tmp;
+        this.setRunning(isRunning);
+        return scoreAdjusted ;
     }
 
     public int checkCollitions() {
-        int tmp = 0;
+        int collisionsChecked  = 0;
         for (Entity entity : this.entities) {
-            tmp = entity != null && entity instanceof IceCream ? this.handlePlayerCollitions(entity) : 1;
+            collisionsChecked  = entity != null && entity instanceof IceCream ? this.handlePlayerCollitions(entity) : 1;
         }
-        return tmp;
+        return collisionsChecked ;
     }
 
     public void generateEntities(Level level, int score) {
@@ -176,11 +176,11 @@ public class Game {
     }
 
     public int handleGameKeys(KeyEvent e) {
-        int tmp = 0;
+        int keyHandlingResult  = 0;
         for (Entity entity : entities) {
-            tmp = entity != null ? entity.handleKeyEvent(e, entities) : 1;
+            keyHandlingResult  = entity != null ? entity.handleKeyEvent(e, entities) : 1;
         }
-        return tmp;
+        return keyHandlingResult ;
     }
 
 }
