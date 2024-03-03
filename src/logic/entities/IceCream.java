@@ -10,6 +10,14 @@ import logic.results.None;
 import logic.results.Points;
 
 public class IceCream extends Entity {
+
+    /**
+     * Constructs an Ice Cream object with the given parameters
+     * 
+     * @param id the unique identifier of the Ice Cream entity
+     * @param x  the x-coordinate position of the Ice Cream entity
+     * @param y  the y-coordinate position of the Ice Cream entity
+     */
     public IceCream(int id, int x, int y) {
         super("IceCream", id, x, y);
     }
@@ -278,6 +286,14 @@ public class IceCream extends Entity {
         return isValidMove(x, y) && this.castSpell(this.id, entities, i, x, y);
     }
 
+    /**
+     * Checks if the new position (x, y) is valid
+     *
+     * @param x the new x-coordinate position
+     * @param y the new y-coordinate position
+     * @return true if the new position is different from the current position,
+     *         false otherwise
+     */
     private boolean isValidMove(int x, int y) {
         return x != this.getX() || y != this.getY();
     }
@@ -309,6 +325,14 @@ public class IceCream extends Entity {
         }
     }
 
+    /**
+     * Determines if the entity at the specified index in the entities list is an
+     * Ice entity
+     *
+     * @param entities the list of entities
+     * @param index    the index of the entity to check
+     * @return true if the entity at the specified index is an Ice entity, false otherwise
+     */
     private static boolean isIceEntity(ArrayList<Entity> entities, int index) {
         return entities.get(index) != null && entities.get(index) instanceof Ice;
     }
