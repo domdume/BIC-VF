@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO; // This class read and write images in different formats
 import java.awt.image.BufferedImage; // This class represents an image saved in memory
 
-import presentation.Constants;
+import presentation.Constant;
 import logic.entities.Entity;
 
 /**
@@ -85,7 +85,7 @@ public class Sketcher {
      * @return returns an integer representing the X coordinate
      */
     private static int placeTheTextAtTheTopRightOfTheScreen(FontMetrics metrics, String score) {
-        return Constants.SCREEN_WIDTH - metrics.stringWidth(score) - Constants.UNIT_SIZE * 2;
+        return Constant.SCREEN_WIDTH - metrics.stringWidth(score) - Constant.UNIT_SIZE * 2;
     }
 
     /**

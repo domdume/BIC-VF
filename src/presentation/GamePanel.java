@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements ActionListener {
                               // (They will not be subject to any specific layout manager)
         this.setBackground(Color.WHITE);
         this.setFocusable(true); // Will be able to respond to keyboard and mouse events when active
-        this.setPreferredSize(new Dimension(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT));
+        this.setPreferredSize(new Dimension(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT));
 
         this.mainMenu = new MainMenu();
         this.pauseMenu = new PauseMenu();
