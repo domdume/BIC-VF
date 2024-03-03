@@ -79,7 +79,10 @@ public class Game {
         currentLevelIndex -= currentLevelIndex > levelManager.getMaxLevel() ? 1 : 0;
         totalScore -= score;
     }
-
+    /**
+     * Moves all entities in the game.
+     * @return The result of moving the entities.
+     */
     public int moveEntities() {
         int moveResult  = 0;
         for (Entity entity : this.entities) {
@@ -110,19 +113,32 @@ public class Game {
         this.running = val;
     }
 
+    /**
+     * Handles collisions between the player entity and other entities.
+     * @param entity The player entity.
+     * @return The result of handling player collisions.
+     */
     private int handlePlayerCollitions(Entity entity) {
         int handleResult  = 0;
         boolean isRunning = this.running;
         for (int i = 0; i < this.entities.size() && isRunning; i++) {
-            handleResult  = entity.handleCoalitions(this.entities.get(i)) instanceof Points
+            handleResult  = isCollectingFood(entity, i)
                     ? this.handleFoodCollition(i)
                     : 1;
-            isRunning = (entity.handleCoalitions(this.entities.get(i)) instanceof Death)
+            isRunning = isDeathCollition(entity, i)
                     ? this.setAlive(false)
                     : true;
         }
         this.setRunning(isRunning);
         return handleResult ;
+    }
+
+    private boolean isDeathCollition(Entity entity, int i) {
+        return entity.handleCoalitions(this.entities.get(i)) instanceof Death;
+    }
+
+    private boolean isCollectingFood(Entity entity, int i) {
+        return entity.handleCoalitions(this.entities.get(i)) instanceof Points;
     }
 
     private int adjustLevel() {
@@ -174,7 +190,11 @@ public class Game {
     public int actionPerformed() {
         return this.getRunning() ? this.handleRunningAction() : 0;
     }
-
+    /**
+     * Handles keyboard input for the game.
+     * @param e The KeyEvent representing the key pressed.
+     * @return The result of handling the key press.
+     */
     public int handleGameKeys(KeyEvent e) {
         int keyHandlingResult  = 0;
         for (Entity entity : entities) {
