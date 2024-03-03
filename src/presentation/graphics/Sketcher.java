@@ -103,7 +103,7 @@ public class Sketcher {
     private int drawImage(JPanel panelParent, Graphics graphics, Entity entity) {
         try {
             BufferedImage entityImage = ImageIO.read(panelParent.getClass().getResource(entity.getImagePath()));
-            graphics.drawImage(entityImage, entity.getX(), entity.getY(), panelParent);
+            graphics.drawImage(entityImage, entity.getPositionX(), entity.getPositionY(), panelParent);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
 

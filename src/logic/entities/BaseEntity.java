@@ -4,10 +4,10 @@ import common.Constant;
 /**
  * An abstract base class representing entities in the game.
  */
-public abstract class BaseEntity implements Identifiable {
-    private int x; // The x-coordinate position of the entity
-    private int y; // The y-coordinate position of the entity
-    protected int id; // The unique identifier of the entity
+public abstract class BaseEntity implements Identifiable, Positionable{
+    private int positionX; // The x-coordinate position of the entity
+    private int positionY; // The y-coordinate position of the entity
+    protected int iD; // The unique identifier of the entity
     protected String name; // The name of the entity
     protected int unit_size; // The size of a unit, used for calculations
     protected String imagePath; // The path to the image associated with the entity
@@ -19,19 +19,19 @@ public abstract class BaseEntity implements Identifiable {
      * Constructs a BaseEntity object with the given parameters.
      * 
      * @param name the name of the entity
-     * @param id   the unique identifier of the entity
-     * @param x    the x-coordinate position of the entity
-     * @param y    the y-coordinate position of the entity
+     * @param iD   the unique identifier of the entity
+     * @param positionX    the x-coordinate position of the entity
+     * @param positionY    the y-coordinate position of the entity
      */
-    public BaseEntity(String name, int id, int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.id = id;
+    public BaseEntity(String name, int iD, int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.iD = iD;
         this.name = name;
         this.unit_size = Constant.UNIT_SIZE;
         this.screen_width = Constant.SCREEN_WIDTH;
         this.screen_height = Constant.SCREEN_HEIGHT;
-        this.imagePath = parseImagePath(name, id);
+        this.imagePath = parseImagePath(name, iD);
     }
 
     /**
@@ -47,19 +47,19 @@ public abstract class BaseEntity implements Identifiable {
     /**
      * Sets the x-coordinate position of the entity.
      * 
-     * @param x the new x-coordinate position
+     * @param positionX the new x-coordinate position
      */
-    public void setX(int x) {
-        this.x = x;
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
     }
 
     /**
      * Sets the y-coordinate position of the entity.
      * 
-     * @param y the new y-coordinate position
+     * @param positionY the new y-coordinate position
      */
-    public void setY(int y) {
-        this.y = y;
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
     }
 
     /**
@@ -67,8 +67,8 @@ public abstract class BaseEntity implements Identifiable {
      * 
      * @return the x-coordinate position
      */
-    public int getX() {
-        return this.x;
+    public int getPositionX() {
+        return this.positionX;
     }
 
     /**
@@ -76,8 +76,8 @@ public abstract class BaseEntity implements Identifiable {
      * 
      * @return the y-coordinate position
      */
-    public int getY() {
-        return this.y;
+    public int getPositionY() {
+        return this.positionY;
     }
 
     /**
@@ -95,26 +95,26 @@ public abstract class BaseEntity implements Identifiable {
      * @return the level identifier
      */
     public int getLevelId() {
-        return this.id;
+        return this.iD;
     }
 
     /**
      * it sets out the number designated for the class
      * 
-     * @param id the number designated for the class in the matrix
+     * @param iD the number designated for the class in the matrix
      */
-    public void setId(int id) {
-        this.id = id;
-        this.imagePath = parseImagePath(this.name, id);
+    public void setiD(int iD) {
+        this.iD = iD;
+        this.imagePath = parseImagePath(this.name, iD);
     }
     
-    /**
-     * Returns a string representation of the entity.
-     * 
-     * @return a string containing the name and coordinates of the entity
-     */
-    @Override
-    public String toString() {
-        return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.x, this.y);
-    }
+//    /**
+//     * Returns a string representation of the entity.
+//     *
+//     * @return a string containing the name and coordinates of the entity
+//     */
+//    @Override
+//    public String toString() {
+//        return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.x, this.y);
+//    }
 }
