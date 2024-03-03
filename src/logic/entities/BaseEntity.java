@@ -43,27 +43,57 @@ public abstract class BaseEntity implements IEntity {
     protected String parseImagePath(String name, int id) {
         return "images/" + name.toLowerCase() + id + ".png";
     }
-
+    
+    /**
+     * Sets the x-coordinate position of the entity.
+     * 
+     * @param x the new x-coordinate position
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Sets the y-coordinate position of the entity.
+     * 
+     * @param y the new y-coordinate position
+     */
     public void setY(int y) {
         this.y = y;
     }
 
+    /**
+     * Gets the x-coordinate position of the entity.
+     * 
+     * @return the x-coordinate position
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Gets the y-coordinate position of the entity.
+     * 
+     * @return the y-coordinate position
+     */
     public int getY() {
         return this.y;
     }
 
+    /**
+     * Gets the image path associated with the entity.
+     * 
+     * @return the image path as a String
+     */
     public String getImagePath() {
         return this.imagePath;
     }
 
+    /**
+     * Gets the level identifier of the entity.
+     * 
+     * @return the level identifier
+     */
     public int getLevelId() {
         return this.id;
     }
@@ -71,13 +101,18 @@ public abstract class BaseEntity implements IEntity {
     /**
      * it sets out the number designated for the class
      * 
-     * @param id the number designated for the class in te matrix
+     * @param id the number designated for the class in the matrix
      */
     public void setId(int id) {
         this.id = id;
         this.imagePath = parseImagePath(this.name, id);
     }
-
+    
+    /**
+     * Returns a string representation of the entity.
+     * 
+     * @return a string containing the name and coordinates of the entity
+     */
     @Override
     public String toString() {
         return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.x, this.y);
