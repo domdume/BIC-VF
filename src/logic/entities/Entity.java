@@ -43,7 +43,6 @@ public class Entity extends BaseEntity {
         }
         return this.withinBounds(x, y);
     }
-
     /**
      * the function goes through the list of entities and if the x and y coordinates
      * are equal to the coordinate it returns false and cannot move, otherwise if it

@@ -1,6 +1,6 @@
 package presentation.graphics.menus;
 
-import common.Constants;
+import presentation.Constants;
 import presentation.graphics.views.View;
 
 import javax.swing.*;

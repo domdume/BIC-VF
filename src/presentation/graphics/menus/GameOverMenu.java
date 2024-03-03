@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import common.Constants;
+import presentation.Constants;
 import presentation.graphics.views.View;
 
 public class GameOverMenu extends View {

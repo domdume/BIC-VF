@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-import common.Constants;
+import presentation.Constants;
 import presentation.graphics.views.View;
 
 public class PauseMenu extends View {

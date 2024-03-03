@@ -262,7 +262,11 @@ public class Game {
         this.setRunning(isRunning);
         return scoreAdjusted ;
     }
-
+    /**
+     * Checks collisions of entities in the game, particularly focusing on IceCream entities.
+     * @return The result is the number of succesful collisions handled or 1 if there were no
+     * IceCream entities to handle collisions for.
+     */
     /**
      * Checks for collisions between entities in the game.
      * 

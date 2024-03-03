@@ -2,8 +2,6 @@ package presentation;//package src;
 
 import java.awt.*; // Contains classes and methods for creating and manipulating user interface components (such as windows, buttons, graphics)
 import javax.swing.*; // Provides components and classes for building GUIs (Windows, panels, buttons)
-
-import common.Constants;
 import data.FileHandler;
 
 import java.awt.event.ActionEvent; // This class represents an action event that is generated when an action is performed on a graphical interface component

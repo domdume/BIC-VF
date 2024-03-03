@@ -1,7 +1,5 @@
 package logic.levels;
 
-import common.Constants;
-
 public class Level {
 
     protected int score;
@@ -13,7 +11,7 @@ public class Level {
     /**
      * Initializes the game state with the provided map, current score, and level
      * index.
-     * 
+     *
      * @param map          an integer type of map. The map representing the game
      *                     layout.
      * @param currentScore currentScore an integer representing the current score of
@@ -54,10 +52,24 @@ public class Level {
         return this.levelIndex;
     }
 
-    // @Override
-    // public int getEnemyCount() {
-    // return this.enemyCount;
-    // }
+    /**
+     * Gets the number of rows in the map.
+     *
+     * @return The number of rows in the map, or 0 if the map is null.
+     */
+    public int getNumberRows() {
+        return this.map != null ? this.map.length : 0;
+    }
+
+    /**
+     * Gets the number of columns in the map.
+     *
+     * @return The number of columns in the map, or 0 if the map is null or has no
+     *         rows.
+     */
+    public int getNumberCols() {
+        return this.map != null && this.map.length > 0 ? this.map[0].length : 0;
+    }
 
     public int[][] getMap() {
         return this.map;
@@ -66,17 +78,17 @@ public class Level {
     /**
      * Sets the map for the game, and calculates scores and enemy count based on the
      * map.
-     * 
+     *
      * @param map an integer type of map. The map representing the game layout.
      */
     private void setMap(int[][] map) {
-        int rows = Constants.SCREEN_WIDTH / Constants.UNIT_SIZE;
-        int cols = Constants.SCREEN_HEIGHT / Constants.UNIT_SIZE;
-        this.map = map.length != rows || map[0].length != cols ? new int[rows][cols] : map;
-        for (int[] ints : map) {
-            for (int anInt : ints) {
-                this.score += anInt == 2 || anInt == 3 ? 1 : 0;
-                this.enemyCount += anInt == 4 || anInt == 5 ? 1 : 0;
+        this.map = map;
+        if (map != null) {
+            for (int[] ints : map) {
+                for (int tileValue  : ints) {
+                    this.score += tileValue  == 2 || tileValue  == 3 ? 1 : 0;
+                    this.enemyCount += tileValue  == 4 || tileValue  == 5 ? 1 : 0;
+                }
             }
         }
     }

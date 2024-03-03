@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO; // This class read and write images in different formats
 import java.awt.image.BufferedImage; // This class represents an image saved in memory
 
-import common.Constants;
+import presentation.Constants;
 import logic.entities.Entity;
 
 /**
