@@ -18,7 +18,6 @@ public class PauseMenu extends View {
     /**
      * Constructs a PauseMenu instance with default settings.
      */
-    // Constructs a PauseMenu instance with default settings
     public PauseMenu() {
         super(Color.WHITE);
         this.setViewTransparencyValue(0.8f);
@@ -34,7 +33,6 @@ public class PauseMenu extends View {
      *
      * @param listener The ActionListener to be set for the save button.
      */
-    // Sets the action listener for the save button
     public void setSaveAL(ActionListener listener) {
         this.saveBtn.addActionListener(listener);
     }
@@ -44,7 +42,6 @@ public class PauseMenu extends View {
      *
      * @param listener The ActionListener to be set for the load button.
      */
-    // Sets the action listener for the load button
     public void setLoadAL(ActionListener listener) {
         this.loadBtn.addActionListener(listener);
     }
@@ -54,7 +51,6 @@ public class PauseMenu extends View {
      *
      * @param listener The ActionListener to be set for the resume button.
      */
-    // Sets the action listener for the resume button
     public void setResumeAL(ActionListener listener) {
         this.resumeBtn.addActionListener(listener);
     }
@@ -64,7 +60,6 @@ public class PauseMenu extends View {
      *
      * @param listener The ActionListener to be set for the exit button.
      */
-    // Sets the action listener for the exit button
     public void setExitAL(ActionListener listener) {
         this.exitBtn.addActionListener(listener);
     }
@@ -72,7 +67,6 @@ public class PauseMenu extends View {
     /**
      * Creates and initializes the buttons for the PauseMenu.
      */
-    // Creates and initializes the buttons for the PauseMenu
     private void createButtons() {
         this.saveBtn = new JButton("Save");
         this.saveBtn.setBounds(Constants.MENU_X - 50, 15, 100, 30);
@@ -95,7 +89,11 @@ public class PauseMenu extends View {
         this.add(exitBtn);
     }
 
-    // Returns the modal component
+    /**
+     * Returns the modal component.
+     *
+     * @return The modal component.
+     */
     @Override
     public Component unwrap() {
         return this.modal;
