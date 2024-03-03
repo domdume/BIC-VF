@@ -103,7 +103,7 @@ public abstract class BaseEntity implements Identifiable, Positionable{
      * 
      * @param iD the number designated for the class in the matrix
      */
-    public void setiD(int iD) {
+    public void setID(int iD) {
         this.iD = iD;
         this.imagePath = parseImagePath(this.name, iD);
     }
