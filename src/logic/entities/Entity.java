@@ -73,12 +73,23 @@ public class Entity extends BaseEntity {
         return new None();
     }
 
-    // there is a method move which moves entities
+    /**
+     * Moves the entity based on the game logic.
+     * 
+     * @param entities a list of entities
+     * @return an integer indicating the movement status
+     */
     public int move(ArrayList<Entity> entities) {
         return 0;
     }
 
-    // the method which passes the type of key to be moved
+    /**
+     * Handles the key event for entity movement.
+     * 
+     * @param e        the KeyEvent representing the key pressed
+     * @param entities a list of entities
+     * @return an integer indicating the movement status
+     */
     public int handleKeyEvent(KeyEvent e, ArrayList<Entity> entities) {
         return 0;
     }
