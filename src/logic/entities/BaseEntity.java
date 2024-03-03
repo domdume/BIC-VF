@@ -1,10 +1,10 @@
 package logic.entities;
 
-import common.Constants;
+import common.Constant;
 /**
  * An abstract base class representing entities in the game.
  */
-public abstract class BaseEntity implements IEntity {
+public abstract class BaseEntity implements Identifiable {
     private int x; // The x-coordinate position of the entity
     private int y; // The y-coordinate position of the entity
     protected int id; // The unique identifier of the entity
@@ -28,9 +28,9 @@ public abstract class BaseEntity implements IEntity {
         this.y = y;
         this.id = id;
         this.name = name;
-        this.unit_size = Constants.UNIT_SIZE;
-        this.screen_width = Constants.SCREEN_WIDTH;
-        this.screen_height = Constants.SCREEN_HEIGHT;
+        this.unit_size = Constant.UNIT_SIZE;
+        this.screen_width = Constant.SCREEN_WIDTH;
+        this.screen_height = Constant.SCREEN_HEIGHT;
         this.imagePath = parseImagePath(name, id);
     }
 
