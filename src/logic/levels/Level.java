@@ -1,6 +1,6 @@
 package logic.levels;
 
-import common.Constants;
+import common.Constant;
 
 public class Level {
 
@@ -55,8 +55,8 @@ public class Level {
      * @param map an integer type of map. The map representing the game layout.
      */
     private void setMap(int[][] map) {
-        int rows = Constants.SCREEN_WIDTH / Constants.UNIT_SIZE;
-        int cols = Constants.SCREEN_HEIGHT / Constants.UNIT_SIZE;
+        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
+        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
         this.map = map.length != rows || map[0].length != cols ? new int[rows][cols] : map;
         for (int[] ints : map) {
             for (int anInt : ints) {

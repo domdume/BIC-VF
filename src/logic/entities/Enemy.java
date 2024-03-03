@@ -16,7 +16,7 @@ public class Enemy extends Entity {
 
     @Override
     public int getLevelId() {
-        return this.id == 0 ? 4 : 5;
+        return this.iD == 0 ? 4 : 5;
     }
 
     /**
@@ -29,8 +29,8 @@ public class Enemy extends Entity {
      * @return a true or false value depending on whether the ice is on the given
      *         coordinates or not.
      */
-    private boolean checkIce(int x, int y, Entity entity) {
-        boolean iceFound = entity != null && entity instanceof Ice && entity.getX() == x && entity.getY() == y;
+    private boolean checkIceBlock(int x, int y, Entity entity) {
+        boolean iceFound = entity instanceof IceBlock && entity.getPositionX() == x && entity.getPositionY() == y;
         this.forward *= iceFound ? -1 : 1;
         return iceFound;
     }
@@ -45,9 +45,9 @@ public class Enemy extends Entity {
      * @return a true or false value depending on whether the obstacle is on the
      *         given coordinates or not.
      */
-    private boolean checkIndestructible(int x, int y, Entity entity) {
-        boolean indestructibleFound = entity != null && entity instanceof Indestructible && entity.getX() == x
-                && entity.getY() == y;
+    private boolean checkIndestructibleBlock(int x, int y, Entity entity) {
+        boolean indestructibleFound = entity instanceof IndestructibleBlock && entity.getPositionX() == x
+                && entity.getPositionY() == y;
         this.forward *= indestructibleFound ? -1 : 1;
         return indestructibleFound;
     }
@@ -67,10 +67,8 @@ public class Enemy extends Entity {
     @Override
     protected boolean canMove(int x, int y, ArrayList<Entity> entities) {
         boolean ice = false;
-        // boolean indestructible = false;
         for (int i = 0; i < entities.size() && !ice; i++) {
-            ice = this.checkIce(x, y, entities.get(i));
-            // indestructible = this.checkIndestructible(x,y,logic.common.entities.get(i));
+            ice = this.checkIceBlock(x, y, entities.get(i));
         }
         return this.withinBounds(x, y) && !ice;
     }
@@ -91,7 +89,7 @@ public class Enemy extends Entity {
     protected boolean canMoveIndestructible(int x, int y, ArrayList<Entity> entities) {
         boolean indestructible = false;
         for (int i = 0; i < entities.size() && !indestructible; i++) {
-            indestructible = this.checkIndestructible(x, y, entities.get(i));
+            indestructible = this.checkIndestructibleBlock(x, y, entities.get(i));
         }
         return this.withinBounds(x, y) && !indestructible;
     }
@@ -125,8 +123,8 @@ public class Enemy extends Entity {
      */
     @Override
     public int move(ArrayList<Entity> entities) {
-        int x = this.getX();
-        int y = this.getY();
+        int x = this.getPositionX();
+        int y = this.getPositionY();
         y = this.direction == Direction.VERTICAL ? (canMove(x, y - this.unit_size * 2 * this.forward, entities)
                 && canMoveIndestructible(x, y - this.unit_size * 2 * this.forward, entities))
                         ? y - this.unit_size * this.forward
@@ -137,8 +135,8 @@ public class Enemy extends Entity {
                         ? x - this.unit_size * this.forward
                         : x + this.unit_size * this.forward
                 : x;
-        this.setX(x);
-        this.setY(y);
+        this.setPositionX(x);
+        this.setPositionY(y);
         return 0;
     }
 }

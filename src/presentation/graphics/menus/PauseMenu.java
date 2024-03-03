@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-import common.Constants;
+import common.Constant;
 import presentation.graphics.views.View;
 
 public class PauseMenu extends View {
@@ -23,8 +23,8 @@ public class PauseMenu extends View {
         super(Color.WHITE);
         this.setViewTransparencyValue(0.8f);
         this.modal = new Modal(0.6f);
-        this.modal.setBounds(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        this.setBounds(Constants.MENU_X, Constants.MENU_Y, Constants.MENU_WIDTH, Constants.MENU_HEIGHT);
+        this.modal.setBounds(0, 0, Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT);
+        this.setBounds(Constant.MENU_X, Constant.MENU_Y, Constant.MENU_WIDTH, Constant.MENU_HEIGHT);
         this.createButtons();
         modal.add(this);
     }
@@ -75,22 +75,22 @@ public class PauseMenu extends View {
     // Creates and initializes the buttons for the PauseMenu
     private void createButtons() {
         this.saveBtn = new JButton("Save");
-        this.saveBtn.setBounds(Constants.MENU_X - 50, 15, 100, 30);
+        this.saveBtn.setBounds(Constant.MENU_X - 50, 15, 100, 30);
         this.saveBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(saveBtn);
 
         this.loadBtn = new JButton("Load");
-        this.loadBtn.setBounds(Constants.MENU_X - 50, Constants.MENU_Y - 45, 100, 30);
+        this.loadBtn.setBounds(Constant.MENU_X - 50, Constant.MENU_Y - 45, 100, 30);
         this.loadBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(loadBtn);
 
         this.resumeBtn = new JButton("Resume");
-        this.resumeBtn.setBounds(Constants.MENU_X - 50, Constants.MENU_Y, 100, 30);
+        this.resumeBtn.setBounds(Constant.MENU_X - 50, Constant.MENU_Y, 100, 30);
         this.resumeBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(resumeBtn);
 
         this.exitBtn = new JButton("Exit");
-        this.exitBtn.setBounds(Constants.MENU_X - 50, Constants.MENU_Y + 45, 100, 30);
+        this.exitBtn.setBounds(Constant.MENU_X - 50, Constant.MENU_Y + 45, 100, 30);
         this.exitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(exitBtn);
     }

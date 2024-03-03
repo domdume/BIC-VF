@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO; // This class read and write images in different formats
 import java.awt.image.BufferedImage; // This class represents an image saved in memory
 
-import common.Constants;
+import common.Constant;
 import logic.entities.Entity;
 
 /**
@@ -85,7 +85,7 @@ public class Sketcher {
      * @return returns an integer representing the X coordinate
      */
     private static int placeTheTextAtTheTopRightOfTheScreen(FontMetrics metrics, String score) {
-        return Constants.SCREEN_WIDTH - metrics.stringWidth(score) - Constants.UNIT_SIZE * 2;
+        return Constant.SCREEN_WIDTH - metrics.stringWidth(score) - Constant.UNIT_SIZE * 2;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Sketcher {
     private int drawImage(JPanel panelParent, Graphics graphics, Entity entity) {
         try {
             BufferedImage entityImage = ImageIO.read(panelParent.getClass().getResource(entity.getImagePath()));
-            graphics.drawImage(entityImage, entity.getX(), entity.getY(), panelParent);
+            graphics.drawImage(entityImage, entity.getPositionX(), entity.getPositionY(), panelParent);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
 

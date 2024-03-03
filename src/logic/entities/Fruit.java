@@ -7,6 +7,6 @@ public class Fruit extends Entity {
 
     @Override
     public int getLevelId() {
-        return this.id == 0 ? 2 : 3;
+        return this.iD == 0 ? 2 : 3;
     }
 }

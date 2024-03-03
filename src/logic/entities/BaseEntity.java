@@ -1,26 +1,26 @@
 package logic.entities;
 
-import common.Constants;
+import common.Constant;
 
-public abstract class BaseEntity implements IEntity {
-    private int x;
-    private int y;
-    protected int id;
+public abstract class BaseEntity implements Positionable, Identifiable {
+    private int positionX;
+    private int positionY;
+    protected int iD;
     protected String name;
     protected int unit_size;
     protected String imagePath;
     protected int screen_width;
     protected int screen_height;
 
-    public BaseEntity(String name, int id, int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.id = id;
+    public BaseEntity(String name, int iD, int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.iD = iD;
         this.name = name;
-        this.unit_size = Constants.UNIT_SIZE;
-        this.screen_width = Constants.SCREEN_WIDTH;
-        this.screen_height = Constants.SCREEN_HEIGHT;
-        this.imagePath = parseImagePath(name, id);
+        this.unit_size = Constant.UNIT_SIZE;
+        this.screen_width = Constant.SCREEN_WIDTH;
+        this.screen_height = Constant.SCREEN_HEIGHT;
+        this.imagePath = parseImagePath(name, iD);
     }
 
     /**
@@ -33,20 +33,20 @@ public abstract class BaseEntity implements IEntity {
         return "images/" + name.toLowerCase() + id + ".png";
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
     }
 
-    public int getX() {
-        return this.x;
+    public int getPositionX() {
+        return this.positionX;
     }
 
-    public int getY() {
-        return this.y;
+    public int getPositionY() {
+        return this.positionY;
     }
 
     public String getImagePath() {
@@ -54,21 +54,24 @@ public abstract class BaseEntity implements IEntity {
     }
 
     public int getLevelId() {
-        return this.id;
+        return this.iD;
     }
 
     /**
-     * it sets out the number designated for the class
-     * 
-     * @param id the number designated for the class in te matrix
+     * It sets out the number designated for the class
+     * @param iD the number designated for the class in te matrix
      */
-    public void setId(int id) {
-        this.id = id;
-        this.imagePath = parseImagePath(this.name, id);
+    public void setID(int iD) {
+        this.iD = iD;
+        this.imagePath = parseImagePath(this.name, iD);
     }
 
-    @Override
-    public String toString() {
-        return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.x, this.y);
-    }
+//    /**
+//     * Readable representation of an object. Builds the output string with a specific format.
+//     * @return a string that follows the format of the entity name and its X and Y coordinates
+//     */
+//    @Override
+//    public String toString() {
+//        return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.positionX, this.positionY);
+//    }
 }

@@ -33,56 +33,56 @@ public class IceCream extends Entity {
     }
 
     @Override
-    public void setId(int id) {
-        super.setId(id);
+    public void setID(int iD) {
+        super.setID(iD);
     }
 
     @Override
     public int getLevelId() {
-        return this.id == 0 ? 6 : 7;
+        return this.iD == 0 ? 6 : 7;
     }
 
     /**
      * Checks if the entity can move to the specified position (x, y) without
-     * colliding with an Ice entity.
+     * colliding with an IceBlock entity.
      *
      * @param x        the position on the x-axis
      * @param y        the position on the y-axis
      * @param entities a list of entities to check for collisions
      * @return true if the entity can move to the position, false if it would
-     *         collide with an Ice entity or go out of bounds
+     *         collide with an IceBlock entity or go out of bounds
      */
     @Override
     protected boolean canMove(int x, int y, ArrayList<Entity> entities) {
         entities = entities == null ? new ArrayList<>() : entities;
-        boolean foundIce = false; // Cambio de nombre de tmp a foundIce para mayor claridad
+        boolean foundBlock = false; // Cambio de nombre de tmp a foundIce para mayor claridad
         for (Entity entity : entities) {
-            if (entity instanceof Ice && entity.getX() == x && entity.getY() == y) {
-                foundIce = true;
-                break; // Ya que se encontró un Ice, no necesitamos seguir buscando
+            if ( (entity instanceof IceBlock || entity instanceof IndestructibleBlock) && entity.getPositionX() == x && entity.getPositionY() == y) {
+                foundBlock = true;
+                break; // Ya que se encontró un IceBlock, no necesitamos seguir buscando
             }
         }
-        return this.withinBounds(x, y) && !foundIce;
+        return this.withinBounds(x, y) && !foundBlock;
     }
 
     /**
      * Checks if the IceCream entity can move to the specified position (x, y)
-     * without colliding with an Indestructible entity.
+     * without colliding with an IndestructibleBlock entity.
      *
      * @param x        the target position on the x-axis
      * @param y        the target position on the y-axis
      * @param entities a list of entities to check for collisions
      * @return true if the IceCream can move to the position without colliding with
-     *         an Indestructible entity or going out of bounds, false otherwise
+     *         an IndestructibleBlock entity or going out of bounds, false otherwise
      */
     @Override
     protected boolean canMoveIndestructible(int x, int y, ArrayList<Entity> entities) {
         entities = entities == null ? new ArrayList<>() : entities;
         boolean foundIndestructible = false;
         for (Entity entity : entities) {
-            if (entity instanceof Indestructible && entity.getX() == x && entity.getY() == y) {
+            if (entity instanceof IndestructibleBlock && entity.getPositionX() == x && entity.getPositionY() == y) {
                 foundIndestructible = true;
-                break; // Ya que se encontró un Indestructible, no necesitamos seguir buscando
+                break; // Ya que se encontró un IndestructibleBlock, no necesitamos seguir buscando
             }
         }
         return this.withinBounds(x, y) && !foundIndestructible;
@@ -99,7 +99,7 @@ public class IceCream extends Entity {
      */
     @Override
     public GameResult handleCoalitions(Entity entity) {
-        return entity != null && entity.getX() == this.getX() && entity.getY() == this.getY()
+        return entity != null && entity.getPositionX() == this.getPositionX() && entity.getPositionY() == this.getPositionY()
                 ? entity instanceof Enemy ? new Death() : entity instanceof Fruit ? new Points() : new None()
                 : new None();
     }
@@ -155,13 +155,13 @@ public class IceCream extends Entity {
      * @param entities the entity (ice cream)
      */
     private void move(KeyEvent e, ArrayList<Entity> entities) {
-        int x = this.getX();
-        int y = this.getY();
+        int x = this.getPositionX();
+        int y = this.getPositionY();
         int code = e.getKeyCode();
         y = getY(entities, code, x, y);
         x = getX(entities, code, x, y);
-        this.setY(y);
-        this.setX(x);
+        this.setPositionY(y);
+        this.setPositionX(x);
     }
 
     private int getX(ArrayList<Entity> entities, int code, int x, int y) {
@@ -183,7 +183,7 @@ public class IceCream extends Entity {
      * @param e the key associated to the spell
      */
     private void setSpell(KeyEvent e) {
-        this.setId(e.getKeyCode() == KeyEvent.VK_SPACE ? this.id == 0 ? 1 : 0 : this.id);
+        this.setID(e.getKeyCode() == KeyEvent.VK_SPACE ? this.iD == 0 ? 1 : 0 : this.iD);
     }
 
     /**
@@ -204,8 +204,8 @@ public class IceCream extends Entity {
      *         false.
      */
     private boolean addIce(int index, int x, int y, ArrayList<Entity> entities) {
-        boolean addedIce = this.id == 0 && entities.get(index) == null;
-        entities.set(index, addedIce ? new Ice(0, x, y) : entities.get(index));
+        boolean addedIce = this.iD == 0 && entities.get(index) == null;
+        entities.set(index, addedIce ? new IceBlock(0, x, y) : entities.get(index));
         return addedIce;
     }
 
@@ -227,8 +227,8 @@ public class IceCream extends Entity {
      *         function returns false.
      */
     private boolean removeIce(int index, int x, int y, ArrayList<Entity> entities) {
-        boolean iceRemoved = this.id == 1 && entities.get(index) != null
-                && y == entities.get(index).getY() && x == entities.get(index).getX();
+        boolean iceRemoved = this.iD == 1 && entities.get(index) != null
+                && y == entities.get(index).getPositionY() && x == entities.get(index).getPositionX();
         entities.set(index, iceRemoved ? null : entities.get(index));
         return iceRemoved;
     }
@@ -273,13 +273,13 @@ public class IceCream extends Entity {
      * @return Depends on the successfully cast spell
      */
     private boolean handleSpellCasting(ArrayList<Entity> entities, int i, KeyEvent e) {
-        int y = this.getNewY(getKeyYDirection(e), this.getX(), this.getY(), null);
-        int x = this.getNewX(getKeyXDirection(e), this.getX(), this.getY(), null);
-        return isValidMove(x, y) && this.castSpell(this.id, entities, i, x, y);
+        int y = this.getNewY(getKeyYDirection(e), this.getPositionX(), this.getPositionY(), null);
+        int x = this.getNewX(getKeyXDirection(e), this.getPositionX(), this.getPositionY(), null);
+        return isValidMove(x, y) && this.castSpell(this.iD, entities, i, x, y);
     }
 
     private boolean isValidMove(int x, int y) {
-        return x != this.getX() || y != this.getY();
+        return x != this.getPositionX() || y != this.getPositionY();
     }
 
     /**
@@ -310,6 +310,6 @@ public class IceCream extends Entity {
     }
 
     private static boolean isIceEntity(ArrayList<Entity> entities, int index) {
-        return entities.get(index) != null && entities.get(index) instanceof Ice;
+        return entities.get(index) != null && entities.get(index) instanceof IceBlock;
     }
 }

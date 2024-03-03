@@ -3,7 +3,7 @@ package presentation;//package src;
 import java.awt.*; // Contains classes and methods for creating and manipulating user interface components (such as windows, buttons, graphics)
 import javax.swing.*; // Provides components and classes for building GUIs (Windows, panels, buttons)
 
-import common.Constants;
+import common.Constant;
 import data.FileHandler;
 
 import java.awt.event.ActionEvent; // This class represents an action event that is generated when an action is performed on a graphical interface component
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements ActionListener {
                               // (They will not be subject to any specific layout manager)
         this.setBackground(Color.WHITE);
         this.setFocusable(true); // Will be able to respond to keyboard and mouse events when active
-        this.setPreferredSize(new Dimension(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT));
+        this.setPreferredSize(new Dimension(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT));
 
         this.mainMenu = new MainMenu();
         this.pauseMenu = new PauseMenu();
@@ -81,6 +81,7 @@ public class GamePanel extends JPanel implements ActionListener {
         // this.mainMenu.setRestarListener(e-> exitGame());
         this.mainMenu.setStartGameListener(e -> startGameListener());
         this.mainMenu.setExitListener(e -> exitGame());
+        this.mainMenu.setLoadGameListener(e->loadGame());
         this.gameOverMenu.setExitListener(e -> exitGame());
     }
 

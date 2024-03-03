@@ -1,6 +1,6 @@
 package common;
 
-public class Constants {
+public class Constant {
     public static final int SCREEN_WIDTH = 420;
     public static final int SCREEN_HEIGHT = 420;
     public static final int UNIT_SIZE = 30;
