@@ -65,6 +65,9 @@ public class GamePanel extends JPanel implements ActionListener {
         showMainMenu();
     }
 
+    /**
+     * Sets the action listeners for various buttons in the menus.
+     */
     public void setExternalListeners() {
         this.pauseMenu.setResumeAL(e -> hideMenu());
 
@@ -85,6 +88,9 @@ public class GamePanel extends JPanel implements ActionListener {
         this.gameOverMenu.setExitListener(e -> exitGame());
     }
 
+    /**
+     * Action listener for the "Play Again" button.
+     */
     private void playAgainListener() {
         logic.resetLevel();
         this.removeKeyListener(this.keyAdapter);
@@ -92,6 +98,9 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(this.keyAdapter);
     }
 
+    /**
+     * Action listener for the "Restart" button.
+     */
     private void restartListener() {
         logic.resetToLevel1();
         this.removeKeyListener(this.keyAdapter);
@@ -99,6 +108,9 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(this.keyAdapter);
     }
 
+    /**
+     * Action listener for the "Start Game" button.
+     */
     private void startGameListener() {
         this.remove(mainMenu);
         this.timer.start();
@@ -106,36 +118,69 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(this.keyAdapter);
     }
 
+    /**
+     * Adds the game over menu with a specific message.
+     * 
+     * @param msg The message to display.
+     * @return An integer value (0).
+     */
     private int addGameOver(String msg) {
         this.add(this.gameOverMenu.unwrap(msg, logic.getTotalScore()));
         return 0;
     }
 
+    /**
+     * Saves the current game state.
+     */
     private void saveGame() {
         this.fileHandler.saveEntityFile(logic.getEntities(), logic.getScore(), logic.getCurrentLevelIndex());
         this.requestFocus();
     }
 
+    /**
+     * Loads a saved game state.
+     */
     private void loadGame() {
         logic.generateEntities(this.fileHandler.loadEntityFile(), 0);
         this.requestFocus();
     }
 
+    /**
+     * Handles the menu display based on key events.
+     * 
+     * @param e The KeyEvent representing the key pressed.
+     * @return An integer value based on menu visibility.
+     */
     private int handleMenu(KeyEvent e) {
         return !activePauseMenu && e.getKeyCode() == KeyEvent.VK_ESCAPE && logic.getRunning() ? showMenu() : hideMenu();
     }
 
+    /**
+     * Displays the pause menu.
+     * 
+     * @return An integer value (0).
+     */
     private int showMenu() {
         this.activePauseMenu = true;
         this.add(this.pauseMenu.unwrap());
         return 0;
     }
 
+    /**
+     * Displays the main menu.
+     * 
+     * @return An integer value (0).
+     */
     private int showMainMenu() {
         this.add(this.mainMenu.unwrap());
         return 0;
     }
 
+    /**
+     * Hides the pause menu.
+     * 
+     * @return An integer value (1).
+     */
     private int hideMenu() {
         this.activePauseMenu = false;
         this.remove(this.pauseMenu.unwrap());
@@ -143,6 +188,9 @@ public class GamePanel extends JPanel implements ActionListener {
         return 1;
     }
 
+    /**
+     * Exits the game.
+     */
     private void exitGame() {
         this.timer.stop();
         System.out.println("HERE EXIT");
@@ -210,6 +258,13 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private class CustomKeyAdapter extends KeyAdapter {
+        
+        /**
+         * Invoked when a key is pressed. 
+         * It triggers methods to handle game actions and menu visibility based on the key event.
+         * 
+         * @param e The KeyEvent representing the key pressed.
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             logic.handleGameKeys(e);

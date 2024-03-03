@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import common.Direction;
 
 public class Enemy extends Entity {
-    private int forward;
-    private Direction direction;
+    private int forward; 
+    private Direction direction; 
+    /**
+     * int forward: An integer representing the direction of movement.
+     * Direction direction: The direction in which the enemy is currently moving.
+     */
 
     public Enemy(int id, int x, int y) {
         super("Enemy", id, x, y);

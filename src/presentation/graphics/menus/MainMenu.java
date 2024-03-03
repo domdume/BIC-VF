@@ -17,9 +17,9 @@ public class MainMenu extends View {
     private Modal modal;
     private String msg;
 
-    // presentation.GameLogic gameLogic;
-    // Constructs the MainMenu with a white background, sets up the modal, and
-    // creates buttons
+    /**
+     * Constructs the MainMenu with a white background, sets up the modal, and creates buttons.
+     */
     public MainMenu() {
         super(Color.white);
         this.msg = "Bad IceBlock Cream";
@@ -30,7 +30,9 @@ public class MainMenu extends View {
         modal.add(this);
     }
 
-    // Creates buttons for the MainMenu and sets their positions and cursors
+     /**
+     * Creates buttons for the MainMenu and sets their positions and cursors.
+     */
     private void createButtons() {
         this.button1 = new JButton("PLAY");
         this.button1.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 60, 100, 30);
@@ -48,7 +50,11 @@ public class MainMenu extends View {
         this.add(button3);
     }
 
-    // Sets the ActionListener for the "Start Game" button
+    /**
+     * Sets the ActionListener for the "Start Game" button.
+     *
+     * @param listener The ActionListener to be set.
+     */
     public void setStartGameListener(ActionListener listener) {
 
         this.button1.addActionListener(listener);
@@ -64,7 +70,6 @@ public class MainMenu extends View {
      *
      * @param listener The ActionListener to be set.
      */
-    // Sets the ActionListener for the "Exit" button
     public void setExitListener(ActionListener listener) {
         this.button3.addActionListener(listener);
     }
@@ -74,14 +79,17 @@ public class MainMenu extends View {
      *
      * @param graphics The Graphics object to paint with.
      */
-    // Overrides the paintComponent method to draw text on the panel
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.sketcher.drawText(graphics, this, Color.RED, this.msg, Constant.SCREEN_WIDTH / 2,
                 Constant.SCREEN_HEIGHT / 4);
     }
 
-    // Returns the modal component
+    /**
+     * Returns the modal component.
+     *
+     * @return The modal component.
+     */
     @Override
     public Component unwrap() {
         return super.unwrap();

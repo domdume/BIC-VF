@@ -27,14 +27,29 @@ public class Level {
         this.setMap(map);
     }
 
+    /**
+     * Retrieves the total score accumulated in the level.
+     * 
+     * @return the total score accumulated in the level
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Retrieves the current score of the player.
+     * 
+     * @return the current score of the player
+     */
     public int getCurrentScore() {
         return this.currentScore;
     }
 
+    /**
+     * Retrieves the index of the current level.
+     * 
+     * @return the index of the current level
+     */
     public int getLevelIndex() {
         return this.levelIndex;
     }

@@ -10,6 +10,14 @@ import logic.results.None;
 import logic.results.Points;
 
 public class IceCream extends Entity {
+
+    /**
+     * Constructs an Ice Cream object with the given parameters
+     * 
+     * @param id the unique identifier of the Ice Cream entity
+     * @param x  the x-coordinate position of the Ice Cream entity
+     * @param y  the y-coordinate position of the Ice Cream entity
+     */
     public IceCream(int id, int x, int y) {
         super("IceCream", id, x, y);
     }
@@ -259,6 +267,17 @@ public class IceCream extends Entity {
                 : e.getKeyCode() == KeyEvent.VK_W ? Direction.UP : Direction.NONE;
     }
 
+    /**
+     * Handles the process of casting a spell by the IceCream entity.
+     *
+     * @param id the spell identifier (0 for create, 1 for destroy)
+     * @param entities the list of entities where the spell will be cast
+     * @param i the index of the entity in the list where the spell will be
+     * cast
+     * @param x the x-coordinate position where the spell will be cast
+     * @param y the y-coordinate position where the spell will be cast
+     * @return true if the spell was successfully cast, false otherwise
+     */
     private boolean castSpell(int id, ArrayList<Entity> entities, int i, int x, int y) {
         return id == 0 ? this.addIce(i, x, y, entities) : this.removeIce(i, x, y, entities);
     }
@@ -278,6 +297,14 @@ public class IceCream extends Entity {
         return isValidMove(x, y) && this.castSpell(this.iD, entities, i, x, y);
     }
 
+    /**
+     * Checks if the new position (x, y) is valid
+     *
+     * @param x the new x-coordinate position
+     * @param y the new y-coordinate position
+     * @return true if the new position is different from the current position,
+     * false otherwise
+     */
     private boolean isValidMove(int x, int y) {
         return x != this.getPositionX() || y != this.getPositionY();
     }
@@ -309,6 +336,14 @@ public class IceCream extends Entity {
         }
     }
 
+    /**
+     * Determines if the entity at the specified index in the entities list is an
+     * Ice entity
+     *
+     * @param entities the list of entities
+     * @param index    the index of the entity to check
+     * @return true if the entity at the specified index is an Ice entity, false otherwise
+     */
     private static boolean isIceEntity(ArrayList<Entity> entities, int index) {
         return entities.get(index) != null && entities.get(index) instanceof IceBlock;
     }

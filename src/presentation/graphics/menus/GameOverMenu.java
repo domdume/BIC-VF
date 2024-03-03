@@ -17,8 +17,9 @@ public class GameOverMenu extends View {
     private int score;
     private String msg;
 
-    // Constructs the GameOverMenu with a white background, sets up the modal, and
-    // creates buttons
+   /**
+     * Constructs the GameOverMenu with a white background, sets up the modal, and creates buttons.
+     */
     public GameOverMenu() {
         super(Color.WHITE);
         this.msg = "logic.common.Game Over";
@@ -29,7 +30,9 @@ public class GameOverMenu extends View {
         modal.add(this);
     }
 
-    // Creates buttons for the GameOverMenu and sets their positions and cursors
+    /**
+     * Creates buttons for the GameOverMenu and sets their positions and cursors.
+     */
     private void createButtons() {
         this.button1 = new JButton("Restart");
         this.button1.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 60, 100, 30);
@@ -47,7 +50,11 @@ public class GameOverMenu extends View {
         this.add(button3);
     }
 
-    // Sets the ActionListener for the "Restart" button
+   /**
+     * Sets the ActionListener for the "Restart" button.
+     *
+     * @param listener The ActionListener to be set.
+     */
     public void setRestarListener(ActionListener listener) {
         this.button1.addActionListener(listener);
     }
@@ -57,7 +64,6 @@ public class GameOverMenu extends View {
      *
      * @param listener The ActionListener to be set.
      */
-    // Sets the ActionListener for the "Play Again" button.
     public void setPlayAgainListener(ActionListener listener) {
         this.button2.addActionListener(listener);
     }
@@ -67,7 +73,6 @@ public class GameOverMenu extends View {
      *
      * @param listener The ActionListener to be set.
      */
-    // Sets the ActionListener for the "Exit" button
     public void setExitListener(ActionListener listener) {
         this.button3.addActionListener(listener);
     }
@@ -77,7 +82,6 @@ public class GameOverMenu extends View {
      *
      * @param graphics The Graphics object to paint with.
      */
-    // Overrides the paintComponent method to draw text on the panel.
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.sketcher.drawText(graphics, this, Color.RED, this.msg, Constant.SCREEN_WIDTH / 2,
@@ -93,7 +97,6 @@ public class GameOverMenu extends View {
      * @param score   The score to display.
      * @return The modal component.
      */
-    // Updates the message and score of the game over menu
     public Component unwrap(String message, int score) {
         this.score = score;
         this.msg = message;
@@ -104,7 +107,6 @@ public class GameOverMenu extends View {
      * Returns the modal component.
      * @return The modal component.
      */
-    // Returns the modal component.
     @Override
     public Component unwrap() {
         return this.modal;
