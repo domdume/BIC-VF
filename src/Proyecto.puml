@@ -17,12 +17,22 @@ package common{
          + HORIZONTAL(): Direction
          + NONE(): Direction
     }
+
+    enum FileMode{
+        + SERIALIZABLE(): FileMode
+        + TEXT(): FileMode
+    }
 }
 
 
 package data{
     class FileHandler {
+         - mode: FileMode
+         + saveGame(entities: ArrayList<Entity>, currentScore: int, levelIndex: int): void
+         + loadGame(): Level
          + saveEntityFile(entities : ArrayList<Entity>, currentScore : int, levelIndex : int): void
+         - saveSerializedLevel(entities : ArrayList<Entity>, currentScore : int, levelIndex : int): void
+         - loadSerializedLevel(): Level
          + loadEntityFile(): Level
          - getEntityValues(entity : Entity, map : int[][]): int[][]
          - entitiesToLevel(entities : ArrayList<Entity>, rows : int, cols : int, currentScore : int, levelIndex : int): Level
@@ -36,13 +46,13 @@ package logic{
         abstract class BaseEntity{
             - positionX: int
             - positionY: int
-            # id: int
+            # iD: int
             # name: String
             # unit_size: int
             # imagePath: String
             # screen_width: int
             # screen_height: int
-            # parseImagePath(name: String, id: int): String
+            # parseImagePath(name: String, iD: int): String
             + setPositionX(positionX: int): void
             + setPositionY(positionY: int): void
             + getPositionY(positionY: int): void
@@ -98,7 +108,7 @@ package logic{
             - removeIce(index: int, x: int, y: int, entities: ArrayList<Entity>): boolean
             - getKeyXDirection(e: KeyEvent): Direction
             - getKeyYDirection(e: KeyEvent): Direction
-            - castSpell(id: int, entities: ArrayList<Entity>, i: int, x: int, y:int): boolean
+            - castSpell(iD: int, entities: ArrayList<Entity>, i: int, x: int, y:int): boolean
             - handleSpellCasting(entities: ArrayList<Entity>, i: int, e: KeyEvent): boolean
             - isValidMove(x: int, y: int): boolean
             - castCreateSpell(e: KeyEvent, entities: ArrayList<Entity>): void
@@ -235,12 +245,14 @@ package presentation{
 
                   class MainMenu{
                          - button1: JButton
+                         - button2: JButton
                          - button3: JButton
                          - modal: Modal
                          - msg: String
                          - createButtons(): void
                          + setStartGameListener(listener: ActionListener): void
-                         + setExitListener(listener: ActionListener)
+                         + setLoadGameListener(listener: ActionListener): void
+                         + setExitListener(listener: ActionListener): void
                          + paintComponent(graphics: Graphics): void
                          + unwrap(): Component
                   }
@@ -313,7 +325,7 @@ package presentation{
           - logic: Game
           - sketcher: Sketcher
           - mainMenu: MainMenu
-          - gameOver: GameOverMenu
+          - gameOverMenu: GameOverMenu
           - pauseMenu: PauseMenu
           - keyAdapter: KeyAdapter
           - fileHandler: FileHandler
@@ -322,6 +334,7 @@ package presentation{
           - playAgainListener(): void
           - restartListener(): void
           - startGameListener(): void
+          - loadGameListener(): void
           - addGameOver(msg: String): int
           - saveGame(): void
           - loadGame(): void
@@ -350,6 +363,7 @@ Fruit --|> Entity
 IceBlock --|> Entity
 IceCream --|> Entity
 IndestructibleBlock --|> Entity
+Level ..|> Serializable
 Level1 --|> Level
 Level2 --|> Level
 Level3 --|> Level
@@ -367,7 +381,9 @@ GamePanel --|> JPanel
 GamePanel ..|> ActionListener
 GameFrame --|> JFrame
 
+Constant ..> levels
 FileHandler ..> Constants
+FileHandler ..> FileMode
 FileHandler ..> Entity
 FileHandler ..> Level
 FileHandler ..> Level1
@@ -400,6 +416,7 @@ PauseMenu ..> View
 View ..> Sketcher
 Sketcher ..> Constants
 Sketcher ..> Entity
+GamePanel ..> Game
 GamePanel ..> Sketcher
 GamePanel ..> GameOverMenu
 GamePanel ..> MainMenu
