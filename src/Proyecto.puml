@@ -2,6 +2,7 @@
 
 package common{
     class Constant{
+        + level: Level
         + SCREEN_WIDTH: int
         + SCREEN_HEIGHT: int
         + UNIT_SIZE: int
@@ -149,8 +150,6 @@ package logic{
             + getScore(): int
             + getCurrentScore(): int
             + getLevelIndex(): int
-            + getNumberRows(): int
-            + getNumberCols(): int
             + getMap(): int[][]
             + setMap(map: int[][]): void
         }
