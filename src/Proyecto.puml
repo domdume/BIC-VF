@@ -1,0 +1,410 @@
+@startuml
+
+package common{
+    class Constant{
+        + SCREEN_WIDTH: int
+        + SCREEN_HEIGHT: int
+        + UNIT_SIZE: int
+    }
+
+    enum Direction{
+         + UP(): Direction
+         + DOWN(): Direction
+         + LEFT(): Direction
+         + RIGHT(): Direction
+         + VERTICAL(): Direction
+         + HORIZONTAL(): Direction
+         + NONE(): Direction
+    }
+}
+
+
+package data{
+    class FileHandler {
+         + saveEntityFile(entities : ArrayList<Entity>, currentScore : int, levelIndex : int): void
+         + loadEntityFile(): Level
+         - getEntityValues(entity : Entity, map : int[][]): int[][]
+         - entitiesToLevel(entities : ArrayList<Entity>, rows : int, cols : int, currentScore : int, levelIndex : int): Level
+         - textToLevel(txt : String): Level
+         + txtToMatrix(input : String): int[][]
+    }
+}
+
+package logic{
+    package entities{
+        abstract class BaseEntity{
+            - positionX: int
+            - positionY: int
+            # id: int
+            # name: String
+            # unit_size: int
+            # imagePath: String
+            # screen_width: int
+            # screen_height: int
+            # parseImagePath(name: String, id: int): String
+            + setPositionX(positionX: int): void
+            + setPositionY(positionY: int): void
+            + getPositionY(positionY: int): void
+            + getPositionX(positionX: int): void
+            + getImagePath(): String
+            + getLevelId(): int
+            + setID(id: int): void
+        }
+
+        class Enemy{
+            - forward: int
+            - direction: Direction
+            + getLevelId(): int
+            - checkIceBlock(x: int, y: int, entity: Entity): boolean
+            - checkIndestructibleBlock(x: int, y: int, entity: Entity): boolean
+            # canMove(x: int, y: int, entities: ArrayList<Entity>): boolean
+            # canMoveIndestructible(x: int, y: int, entities: ArrayList<Entity>): boolean
+            # withinBounds(x: int, y: int): boolean
+            + move(entities: ArrayList<Entity>): int
+        }
+
+        class Entity{
+            # withinBounds(x: int, y: int): boolean
+            # canMove(x: int, y: int, entities: ArrayList<Entity>): boolean
+            # canMoveIndestructible(x: int, y: int, entities: ArrayList<Entity>): boolean
+            + handleCoalitions(entity: Entity): GameResult
+            + move(entities: ArrayList<Entity>): int
+            + handleKeyEvent(e: KeyEvent, entities: ArrayList<Entity>): int
+        }
+
+        class Fruit{
+            + getLevelId(): int
+        }
+
+        class IceBlock{
+            + getLevelId(): int
+        }
+
+        class IceCream{
+            + handleKeyEvent(e: KeyEvent, entities: ArrayList<Entity>): int
+            + setID(id: int): void
+            + getLevelId(): void
+            # canMove(x: int, y: int, entities: ArrayList<Entity>): boolean
+            # canMoveIndestructible(x: int, y: int, entities: ArrayList<Entity>): boolean
+            + handleCoalitions(entity: Entity): GameResult
+            - getNewX(direction: Direction, x: int, y: int, entities: ArrayList<Entity>)
+            - getNewY(direction: Direction, x: int, y: int, entities: ArrayList<Entity>)
+            - move(e: KeyEvent, entities: ArrayList<Entity>): void
+            - getX(entities: ArrayList<Entity>, code: int, x: int, y: int): int
+            - getY(entities: ArrayList<Entity>, code: int, x: int, y: int): int
+            - setSpell(e: KeyEvent): void
+            - addIce(index: int, x: int, y: int, entities: ArrayList<Entity>): boolean
+            - removeIce(index: int, x: int, y: int, entities: ArrayList<Entity>): boolean
+            - getKeyXDirection(e: KeyEvent): Direction
+            - getKeyYDirection(e: KeyEvent): Direction
+            - castSpell(id: int, entities: ArrayList<Entity>, i: int, x: int, y:int): boolean
+            - handleSpellCasting(entities: ArrayList<Entity>, i: int, e: KeyEvent): boolean
+            - isValidMove(x: int, y: int): boolean
+            - castCreateSpell(e: KeyEvent, entities: ArrayList<Entity>): void
+            - castDestroySpell(e: KeyEvent, entities: ArrayList<Entity>): void
+            - isIceEntity(entities: ArrayList<Entity>, index: int): boolean
+        }
+
+        interface Identifiable{
+            getLevelId(): int
+            getImagePath(): String
+            toString(): String
+        }
+
+        class IndestructibleBlock{
+            + getLevelId(): int
+        }
+
+        interface Positionable{
+            setPositionX(positionX: int): void
+            setPositionY(positionY: int): void
+            getPositionX(): int
+            getPositionY(): int
+        }
+    }
+
+    package generators{
+        class EntityGenerator{
+            + generate(level: Level): ArrayList<Entity>
+            - Params(row: int, col: int, val: int): record
+        }
+        class Values{
+            - params: Params
+            - getX(): int
+            - getY(): int
+            - getId(): int
+            - storage(): Map<Integer, Entity>
+            + getEntity(): Entity
+        }
+    }
+
+    package levels{
+        class Level{
+            # score: int
+            # map: int[][]
+            # levelIndex: int
+            # enemyCount: int
+            # currentScore: int
+            + init(map: int[][] , currentScore: int,levelIndex: int ): void
+            + getScore(): int
+            + getCurrentScore(): int
+            + getLevelIndex(): int
+            + getNumberRows(): int
+            + getNumberCols(): int
+            + getMap(): int[][]
+            + setMap(map: int[][]): void
+        }
+
+        class Level1{}
+        class Level2{}
+        class Level3{}
+
+        class LevelManager{
+            + getLevel(level: int): Level
+            + getMaxLevel(): int
+            - storage(): Map<Integer, Level>
+        }
+    }
+
+    package results{
+        class Death{}
+
+        abstract class GameResult{}
+
+        class None{}
+
+        class Points{}
+    }
+
+    class Game{
+        - score: int
+        - totalScore: int
+        - running: boolean
+        - currentLevel: Level
+        - currentLevelIndex: int
+        - levelManager: LevelManager
+        - entities: ArrayList<Entity>
+        - lastLevelCompleted: boolean
+        - alive: boolean
+        + getTotalScore(): int
+        + getLastLevelCompleted(): boolean
+        + getAlive(): boolean
+        - setAlive(val: boolean): boolean
+        - setLastLevelCompleted(val: boolean): boolean
+        + getScore(): int
+        + getCurrentLevelIndex(): int
+        + getEntities(): ArrayList<Entity>
+        + getRunning(): boolean
+        + resetToLevel1(): void
+        + resetLevel(): void
+        + moveEntities(): int
+        + startGame(): void
+        + restartGame(): int
+        - handleFoodCollition(foodIndex: int): int
+        - setRunning(val: boolean): void
+        - handlePlayerCollitions(entity: Entity): int
+        - isDeathCollition(entity: Entity, i: int): boolean
+        - isCollectingFood(entity: Entity, i: int): boolean
+        - adjustLevel(): int
+        + checkScore(): int
+        + checkCollitions(): int
+        + generateEntities(level: Level, score: int): void
+        - handleRunningAction(): int
+        + actionPerformed(): int
+        + handleGameKeys(e: KeyEvent): int
+    }
+}
+
+package presentation{
+    package graphics{
+        package menus{
+                  class GameOverMenu{
+                        - button1: JButton
+                        - button2: JButton
+                        - button3: JButton
+                        - modal: Modal
+                        - score: int
+                        - msg: String
+                        - createButtons(): void
+                        + setRestarListener(listener: ActionListener): void
+                        + setPlayAgainListener(listener: ActionListener): void
+                        + setExitListener(listener: ActionListener): void
+                        + paintComponent(graphics: Graphics): void
+                        + unwrap(message: String, score: int): Component
+                        + unwrap(): Component
+                  }
+
+                  class MainMenu{
+                         - button1: JButton
+                         - button3: JButton
+                         - modal: Modal
+                         - msg: String
+                         - createButtons(): void
+                         + setStartGameListener(listener: ActionListener): void
+                         + setExitListener(listener: ActionListener)
+                         + paintComponent(graphics: Graphics): void
+                         + unwrap(): Component
+                  }
+
+                  class Modal{}
+
+                  class PauseMenu{
+                         - resumeBtn: JButton
+                         - saveBtn: JButton
+                         - loadBtn: JButton
+                         - exitBtn: JButton
+                         - modal: Modal
+                         + setSaveAL(listener: ActionListener): void
+                         + setLoadAL(listener: ActionListener): void
+                         + setResumeAL(listener: ActionListener): void
+                         + setExitAL(listener: ActionListener): void
+                         - createButtons(): void
+                         + unwrap(): Component
+                  }
+                }
+
+        package views{
+                interface Modifiable{
+                    + unwrap(): Component
+                }
+
+                class View{
+                    + OPAQUE_VIEW_VALUE: float
+                    - viewTransparencyValue: float
+                    # sketcher: Sketcher
+                    # viewBackGroundColor: Color
+                    # setViewTransparencyValue(viewTransparencyValue: float): void
+                    + actionPerformed(actionEvent: ActionEvent): void
+                    + paintComponent(graphics: Graphics): void
+                    - getRectangle(): Rectangle
+                    + unwrap(): Component
+                }
+        }
+
+        class Sketcher{
+                    - panel: JPanel
+                    + drawEntities(graphics: Graphics, entities: ArrayList<Entity>): int
+                    + drawScore(graphics: Graphics, points: int): void
+                    - getSizeOfTheFont(graphics: Graphics): int
+                    - placeTheTextAtTheTopRightOfTheScreen(metrics: FontMetrics, score: String): int
+                    - drawImage(panelParent: JPanel, graphics: Graphics, entity: Entity): int
+                    + drawBackground(graphics: Graphics, bounds: Rectangle, BackGroundColor: Color, transparencyBackGroundValue: float): void
+                    + drawText(graphics: Graphics, panel: JPanel, textColor: Color, text: String, xPosition: int, yPosition: int): void
+        }
+    }
+
+    package images{
+         'images'
+    }
+
+    class Constant{
+        + SCREEN_WIDTH: int
+        + SCREEN_HEIGHT: int
+        + UNIT_SIZE: int
+        + MENU_WIDTH: int
+        + MENU_HEIGHT: int
+        + MENU_X: int
+        + MENU_Y: int
+    }
+
+
+     class GamePanel{
+          - timer: Timer
+          - DELAY: int
+          - logic: Game
+          - sketcher: Sketcher
+          - mainMenu: MainMenu
+          - gameOver: GameOverMenu
+          - pauseMenu: PauseMenu
+          - keyAdapter: KeyAdapter
+          - fileHandler: FileHandler
+          # activePauseMenu: boolean
+          + setExternalListeners(): void
+          - playAgainListener(): void
+          - restartListener(): void
+          - startGameListener(): void
+          - addGameOver(msg: String): int
+          - saveGame(): void
+          - loadGame(): void
+          - handleMenu(e: KeyEvent): int
+          - showMenu(): int
+          - showMainMenu(): int
+          - hideMenu(): int
+          - exitGame(): int
+          + paintComponent(graphics: Graphics): void
+          - sketch(graphics: Graphics): int
+          - draw(graphics: Graphics): int
+          + actionPerformed(actionEvent: ActionEvent): void
+     }
+     class CustomKeyAdapter{
+          + keyPressed(e: KeyEvent): void
+     }
+}
+
+class GameFrame{}
+
+BaseEntity ..|> Identifiable
+BaseEntity ..|> Positionable
+Enemy --|> Entity
+Entity --|> BaseEntity
+Fruit --|> Entity
+IceBlock --|> Entity
+IceCream --|> Entity
+IndestructibleBlock --|> Entity
+Level1 --|> Level
+Level2 --|> Level
+Level3 --|> Level
+Death --|> GameResult
+None --|> GameResult
+Points --|> GameResult
+GameOverMenu --|> View
+MainMenu --|> View
+Modal --|> View
+PauseMenu --|> View
+View --|> JPanel
+View ..|> ActionListener
+View ..|> Modifiable
+GamePanel --|> JPanel
+GamePanel ..|> ActionListener
+GameFrame --|> JFrame
+
+FileHandler ..> Constants
+FileHandler ..> Entity
+FileHandler ..> Level
+FileHandler ..> Level1
+BaseEntity ..> Constants
+Enemy ..> Direction
+Entity ..> GameResult
+Entity ..> None
+IceCream ..> Direction
+IceCream ..> Death
+IceCream ..> GameResult
+IceCream ..> None
+IceCream ..> Points
+EntityGenerator ..> Constants
+EntityGenerator ..> entities
+EntityGenerator ..> Level
+Game ..> Entity
+Game ..> IceCream
+Game ..> EntityGenerator
+Game ..> Level
+Game ..> LevelManager
+Game ..> Death
+Game ..> Points
+GameOverMenu ..> Constants
+GameOverMenu ..> View
+MainMenu ..> Constants
+MainMenu ..> View
+Modal ..> View
+PauseMenu ..> Constants
+PauseMenu ..> View
+View ..> Sketcher
+Sketcher ..> Constants
+Sketcher ..> Entity
+GamePanel ..> Sketcher
+GamePanel ..> GameOverMenu
+GamePanel ..> MainMenu
+GamePanel ..> PauseMenu
+GameFrame ..> GamePanel
+
+@enduml
