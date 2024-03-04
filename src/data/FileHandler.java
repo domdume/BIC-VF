@@ -1,34 +1,64 @@
 package data;
 
+import java.io.*;
 import java.util.Scanner;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 
 import common.Constant;
+import common.FileMode;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
 
 public class FileHandler {
 
+    private FileMode mode;
+
+    public FileHandler(FileMode mode) {
+        this.mode = mode;
+    }
+
+    public void saveGame(ArrayList<Entity> entities, int currentScore, int levelIndex) {
+        switch (this.mode) {
+            case TEXT:
+                this.saveEntityFile(entities, currentScore, levelIndex);
+                break;
+
+            case SERIALIZABLE:
+                this.saveSerializedLevel(entities, currentScore, levelIndex);
+                break;
+        }
+    }
+
+    public Level loadGame() {
+        switch (this.mode) {
+            case TEXT:
+                return this.loadEntityFile();
+
+            case SERIALIZABLE:
+                return this.loadSerializedLevel();
+
+            default:
+                return new Level1();
+        }
+    }
+
     /**
-     * It's responsible for storing an entity's information in a file.
+     * it's responsible for storing an entity's information in a file.
+     *
      * @param entities     is an ArrayList of class Entity.
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
      */
 
-    public void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
+    private void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
         StringBuilder data = new StringBuilder();
         int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
         int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
         for (int j = 0; j < rows; j++) {
             for (int k = 0; k < cols; k++) {
-                data.append(String.format("%d%s", level.getMap()[j][k], k < cols - 1 ? ", " : ""));
+                data.append(String.format("%d%s", level.getMap()[k][j], k < cols - 1 ? ", " : ""));
             }
             data.append("\n");
         }
@@ -46,13 +76,62 @@ public class FileHandler {
     }
 
     /**
+     * it's responsible for storing an entity's information in a file.
+     *
+     * @param entities     is an ArrayList of class Entity.
+     * @param currentScore an integer representing the current score of the player.
+     * @param levelIndex   an integer representing the index of the current level.
+     */
+
+    private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex) {
+        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
+        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
+        Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
+
+        try (FileOutputStream file = new FileOutputStream("./game.ser")) {
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(level);
+            out.close();
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Just Skip
+        }
+    }
+
+    /**
+     * reads the game level serialized file and parses it in order to load the
+     * position of game entities and score achieved at game saving time.
+     *
+     * @return new Level, if the file is invalid, it returns the Level 1 by default
+     */
+    private Level loadSerializedLevel() {
+
+        Level level = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("game.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            level = (Level) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+            // Just Skip
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+            // Just Skip
+        }
+        return level == null ? new Level1() : level;
+    }
+
+    /**
      * reads the game entity file and parses it in order to load the position of
      * game entities
      * and score achieved at game saving time.
-     * 
+     *
      * @return new Level, if the file is invalid, it returns the Level 1 by default
      */
-    public Level loadEntityFile() {
+    private Level loadEntityFile() {
         String fullData = "";
         try (FileReader reader = new FileReader("game.txt")) {
             Scanner myReader = new Scanner(reader);
@@ -74,7 +153,7 @@ public class FileHandler {
      * It uses the coordinates of the entity to calculate the position
      * in the matrix and assigns the entity level identifier to that position in the
      * matrix.
-     * 
+     *
      * @param entity of type Entity. The Entity object for which we want to get
      *               values.
      * @param map    an integer type of map. Stores the id of the Entity in the
@@ -85,13 +164,13 @@ public class FileHandler {
         int x = entity.getPositionX() / Constant.UNIT_SIZE;
         int y = entity.getPositionY() / Constant.UNIT_SIZE;
         int id = entity.getLevelId();
-        map[x][y] = id;
+        map[y][x] = id;
         return map;
     }
 
     /**
      * Converts a list of entities into a game level.
-     * 
+     *
      * @param entities     is a List of entities to include in the level.
      * @param rows         an integer representing the rows in the level matrix.
      * @param cols         an integer representing the columns in the level matrix.
@@ -111,7 +190,7 @@ public class FileHandler {
 
     /**
      * Turns a text into a Level object in the game.
-     * 
+     *
      * @param txt represents the level in a specific text format.
      * @return a Level representing the level generated from the text.
      */
@@ -140,11 +219,11 @@ public class FileHandler {
 
     /**
      * Converts a text string to a two-dimensional array of integers.
-     * 
+     *
      * @param input is a text string representing the array in a specific format.
      * @return an array of integers generated from the text string.
      */
-    public int[][] txtToMatrix(String input) {
+    private int[][] txtToMatrix(String input) {
         // Split string into rows using line break as delimiter.
         String[] rows = input.split("\n");
 

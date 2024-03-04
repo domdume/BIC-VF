@@ -18,6 +18,11 @@ public class Enemy extends Entity {
         this.forward = 1;
     }
 
+    /**
+     * Gets the level identifier of the enemy.
+     * 
+     * @return the level identifier, 4 if id is 0, otherwise 5
+     */
     @Override
     public int getLevelId() {
         return this.iD == 0 ? 4 : 5;
