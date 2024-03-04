@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import common.Constant;
+import presentation.Constant;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
