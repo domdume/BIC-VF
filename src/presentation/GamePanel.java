@@ -2,6 +2,8 @@ package presentation;//package src;
 
 import java.awt.*; // Contains classes and methods for creating and manipulating user interface components (such as windows, buttons, graphics)
 import javax.swing.*; // Provides components and classes for building GUIs (Windows, panels, buttons)
+
+import common.FileMode;
 import data.FileHandler;
 
 import java.awt.event.ActionEvent; // This class represents an action event that is generated when an action is performed on a graphical interface component
@@ -53,7 +55,7 @@ public class GamePanel extends JPanel implements ActionListener {
         this.pauseMenu = new PauseMenu();
         this.gameOverMenu = new GameOverMenu();
         this.keyAdapter = new CustomKeyAdapter();
-        this.fileHandler = new FileHandler();
+        this.fileHandler = new FileHandler(FileMode.SERIALIZABLE);
 
         this.timer = new Timer(DELAY, this); // Timer instance with a defined delay and sets the GamePanel as the object
                                              // that listens to the timer's action events.
@@ -68,21 +70,17 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     public void setExternalListeners() {
         this.pauseMenu.setResumeAL(e -> hideMenu());
-
         this.pauseMenu.setExitAL(e -> exitGame());
-
         this.pauseMenu.setSaveAL(e -> saveGame());
-
         this.pauseMenu.setLoadAL(e -> loadGame());
 
         this.gameOverMenu.setRestarListener(e -> restartListener());
-
         this.gameOverMenu.setPlayAgainListener(e -> playAgainListener());
-
-        // this.mainMenu.setRestarListener(e-> exitGame());
-        this.mainMenu.setStartGameListener(e -> startGameListener());
-        this.mainMenu.setExitListener(e -> exitGame());
         this.gameOverMenu.setExitListener(e -> exitGame());
+
+        this.mainMenu.setStartGameListener(e -> startGameListener());
+        this.mainMenu.setLoadGameListener(e -> loadGameListener());
+        this.mainMenu.setExitListener(e -> exitGame());
     }
 
     /**
@@ -115,6 +113,14 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(this.keyAdapter);
     }
 
+    private void loadGameListener() {
+        this.remove(mainMenu);
+        this.timer.start();
+        logic.startGame();
+        loadGame();
+        this.addKeyListener(this.keyAdapter);
+    }
+
     /**
      * Adds the game over menu with a specific message.
      * 
@@ -130,7 +136,9 @@ public class GamePanel extends JPanel implements ActionListener {
      * Saves the current game state.
      */
     private void saveGame() {
-        this.fileHandler.saveEntityFile(logic.getEntities(), logic.getScore(), logic.getCurrentLevelIndex());
+        // this.fileHandler.saveEntityFile(logic.getEntities(), logic.getScore(),
+        // logic.getCurrentLevelIndex());
+        this.fileHandler.saveGame(logic.getEntities(), logic.getScore(), logic.getCurrentLevelIndex());
         this.requestFocus();
     }
 
@@ -138,7 +146,8 @@ public class GamePanel extends JPanel implements ActionListener {
      * Loads a saved game state.
      */
     private void loadGame() {
-        logic.generateEntities(this.fileHandler.loadEntityFile(), 0);
+        // logic.generateEntities(this.fileHandler.loadEntityFile(), 0);
+        logic.generateEntities(this.fileHandler.loadGame(), 0);
         this.requestFocus();
     }
 

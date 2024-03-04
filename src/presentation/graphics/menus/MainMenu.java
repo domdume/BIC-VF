@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class MainMenu extends View {
 
     private JButton button1;
+    private JButton button2;
     private JButton button3;
     private Modal modal;
     private String msg;
@@ -37,6 +38,11 @@ public class MainMenu extends View {
         this.button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button1);
 
+        this.button2 = new JButton("Load");
+        this.button2.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2, 100, 30);
+        this.button2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.add(button2);
+
         this.button3 = new JButton("Exit");
         this.button3.setBounds(Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 60, 100, 30);
         this.button3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -51,6 +57,12 @@ public class MainMenu extends View {
     public void setStartGameListener(ActionListener listener) {
 
         this.button1.addActionListener(listener);
+    }
+
+    // Sets the ActionListener for the "Load Game" button
+    public void setLoadGameListener(ActionListener listener) {
+
+        this.button2.addActionListener(listener);
     }
 
     /**
