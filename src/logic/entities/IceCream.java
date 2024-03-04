@@ -63,14 +63,14 @@ public class IceCream extends Entity {
     @Override
     protected boolean canMove(int x, int y, ArrayList<Entity> entities) {
         entities = entities == null ? new ArrayList<>() : entities;
-        boolean foundBlock = false; // Cambio de nombre de tmp a foundIce para mayor claridad
+        boolean foundIce = false; // Cambio de nombre de tmp a foundIce para mayor claridad
         for (Entity entity : entities) {
-            if ( (entity instanceof IceBlock || entity instanceof IndestructibleBlock) && entity.getPositionX() == x && entity.getPositionY() == y) {
-                foundBlock = true;
+            if (entity instanceof IceBlock && entity.getPositionX() == x && entity.getPositionY() == y) {
+                foundIce = true;
                 break; // Ya que se encontró un IceBlock, no necesitamos seguir buscando
             }
         }
-        return this.withinBounds(x, y) && !foundBlock;
+        return this.withinBounds(x, y) && !foundIce;
     }
 
     /**
