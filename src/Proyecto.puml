@@ -9,18 +9,18 @@ package common{
     }
 
     enum Direction{
-         + UP(): Direction
-         + DOWN(): Direction
-         + LEFT(): Direction
-         + RIGHT(): Direction
-         + VERTICAL(): Direction
-         + HORIZONTAL(): Direction
-         + NONE(): Direction
+         + UP: Direction
+         + DOWN: Direction
+         + LEFT: Direction
+         + RIGHT: Direction
+         + VERTICAL: Direction
+         + HORIZONTAL: Direction
+         + NONE: Direction
     }
 
     enum FileMode{
-        + SERIALIZABLE(): FileMode
-        + TEXT(): FileMode
+        + SERIALIZABLE: FileMode
+        + TEXT: FileMode
     }
 }
 
