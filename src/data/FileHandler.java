@@ -26,14 +26,14 @@ public class FileHandler {
      * @param currentScore An integer representing the current score.
      * @param levelIndex An integer representing the index of the current level.
      */
-    public void saveGame(ArrayList<Entity> entities, int currentScore, int levelIndex) {
+    public void saveGame(ArrayList<Entity> entities, int currentScore, int levelIndex, MapLimit mapLimit) {
         switch (this.mode) {
             case TEXT:
-                this.saveEntityFile(entities, currentScore, levelIndex);
+                this.saveEntityFile(entities, currentScore, levelIndex, mapLimit);
                 break;
 
             case SERIALIZABLE:
-                this.saveSerializedLevel(entities, currentScore, levelIndex);
+                this.saveSerializedLevel(entities, currentScore, levelIndex, mapLimit);
                 break;
         }
     }
@@ -60,12 +60,13 @@ public class FileHandler {
      * @param entities     is an ArrayList of class Entity.
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
+     * @param mapLimit
      */
 
-    private void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
+    private void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex, MapLimit mapLimit) {
         StringBuilder data = new StringBuilder();
-            int rows = MapLimit.MAP_WIDTH;
-        int cols = MapLimit.MAP_HEIGHT;
+        int rows = mapLimit.getMapWidth();
+        int cols = mapLimit.getMapHeight();
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
         for (int j = 0; j < rows; j++) {
             for (int k = 0; k < cols; k++) {
@@ -91,10 +92,11 @@ public class FileHandler {
      * @param entities     is an ArrayList of class Entity.
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
+     * @param mapLimit
      */
-    private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex) {
-        int rows = MapLimit.MAP_WIDTH;
-        int cols = MapLimit.MAP_HEIGHT;
+    private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex, MapLimit mapLimit) {
+        int rows = mapLimit.getMapWidth();
+        int cols = mapLimit.getMapHeight();
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
 
         try (FileOutputStream file = new FileOutputStream("./game.ser")) {
@@ -122,10 +124,12 @@ public class FileHandler {
             in.close();
             fileIn.close();
         } catch (IOException i) {
-            i.printStackTrace();
+            new Level1();
+            //i.printStackTrace();
             // Just Skip
         } catch (ClassNotFoundException c) {
-            c.printStackTrace();
+            new Level1();
+            //c.printStackTrace();
             // Just Skip
         }
         return level == null ? new Level1() : level;

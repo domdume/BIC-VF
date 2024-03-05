@@ -324,4 +324,7 @@ public class Game {
         return keyHandlingResult ;
     }
 
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
 }

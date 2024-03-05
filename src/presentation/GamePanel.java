@@ -4,6 +4,7 @@ import java.awt.*; // Contains classes and methods for creating and manipulating
 import javax.swing.*; // Provides components and classes for building GUIs (Windows, panels, buttons)
 
 import common.FileMode;
+import common.MapLimit;
 import data.FileHandler;
 
 import java.awt.event.ActionEvent; // This class represents an action event that is generated when an action is performed on a graphical interface component
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private final KeyAdapter keyAdapter;
     private FileHandler fileHandler;
     protected boolean activePauseMenu;
+    private MapLimit mapLimit = new MapLimit();
 
     /**
      * The constructor initializes the game's components and sets up the game's
@@ -138,7 +140,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private void saveGame() {
         // this.fileHandler.saveEntityFile(logic.getEntities(), logic.getScore(),
         // logic.getCurrentLevelIndex());
-        this.fileHandler.saveGame(logic.getEntities(), logic.getScore(), logic.getCurrentLevelIndex());
+        mapLimit.setLevel(logic.getCurrentLevel());
+        this.fileHandler.saveGame(logic.getEntities(), logic.getScore(), logic.getCurrentLevelIndex(), mapLimit);
         this.requestFocus();
     }
 
@@ -147,7 +150,7 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     private void loadGame() {
         // logic.generateEntities(this.fileHandler.loadEntityFile(), 0);
-        logic.generateEntities(this.fileHandler.loadGame(), 0);
+        logic.generateEntities(this.fileHandler.loadGame(), logic.getScore());
         this.requestFocus();
     }
 

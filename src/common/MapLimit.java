@@ -8,28 +8,27 @@ public class MapLimit {
      * The method makes use of the information of the currently active level
      * @param currentLevel level number
      */
-    public static void setLevel(Level currentLevel) {
+    public void setLevel(Level currentLevel) {
         level = currentLevel;
     }
 
-    public static int getMapHeight() {
+    public int getMapHeight() {
         if (level != null) {
             return level.getNumberRows();
         }
         return 0; // Default or error handling
     }
 
-    public static int getMapWidth() {
+    public int getMapWidth() {
         if (level != null) {
             return level.getNumberCols();
         }
         return 0; // Default or error handling
     }
 
-    public static final int MAP_WIDTH = getMapWidth();
+    public final int MAP_WIDTH = getMapWidth();
 
-    public static final int MAP_HEIGHT = getMapHeight();
-
+    public final int MAP_HEIGHT = getMapHeight();
 
 
 

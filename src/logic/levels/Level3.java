@@ -1,7 +1,7 @@
 package logic.levels;
 
 public class Level3 extends Level {
-    // 0: empty, 1: obstacle, 2: banana, 3: strawberry
+    // 0: empty, 1: obstacle, 2: banana, 3: watermelon
     // 4: vertical enemy, 5: horizontal enemy, 6: player
     // 7: NonDestructible Obstacle
     private final int[][] map = {
