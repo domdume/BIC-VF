@@ -1,3 +1,5 @@
+package presentation;
+
 import javax.swing.*; // Provides components and classes for building GUIs (Windows, panels, buttons)
 
 import presentation.GamePanel;
