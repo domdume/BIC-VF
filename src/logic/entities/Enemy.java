@@ -115,9 +115,9 @@ public class Enemy extends Entity {
      */
     @Override
     protected boolean withinBounds(int x, int y) {
-        boolean isWithinEdgeBounds = x < this.unit_size || y < this.unit_size;
-        boolean isOutsideEdgeBounds = x > this.screen_width - this.unit_size * 2
-                || y > this.screen_height - this.unit_size * 2;
+        boolean isWithinEdgeBounds = x < this.groundUsed || y < this.groundUsed;
+        boolean isOutsideEdgeBounds = x > this.mapLimitWidth - this.groundUsed * 2
+                || y > this.mapLimitHeight - this.groundUsed * 2;
         this.forward = isWithinEdgeBounds ? -1 : isOutsideEdgeBounds ? 1 : this.forward;
         return !(isWithinEdgeBounds || isOutsideEdgeBounds);
     }
@@ -134,15 +134,15 @@ public class Enemy extends Entity {
     public int move(ArrayList<Entity> entities) {
         int x = this.getPositionX();
         int y = this.getPositionY();
-        y = this.direction == Direction.VERTICAL ? (canMove(x, y - this.unit_size * 2 * this.forward, entities)
-                && canMoveIndestructible(x, y - this.unit_size * 2 * this.forward, entities))
-                        ? y - this.unit_size * this.forward
-                        : y + this.unit_size * this.forward
+        y = this.direction == Direction.VERTICAL ? (canMove(x, y - this.groundUsed * 2 * this.forward, entities)
+                && canMoveIndestructible(x, y - this.groundUsed * 2 * this.forward, entities))
+                        ? y - this.groundUsed * this.forward
+                        : y + this.groundUsed * this.forward
                 : y;
-        x = this.direction == Direction.HORIZONTAL ? (canMove(x - this.unit_size * 2 * this.forward, y, entities)
-                && canMoveIndestructible(x - this.unit_size * 2 * this.forward, y, entities))
-                        ? x - this.unit_size * this.forward
-                        : x + this.unit_size * this.forward
+        x = this.direction == Direction.HORIZONTAL ? (canMove(x - this.groundUsed * 2 * this.forward, y, entities)
+                && canMoveIndestructible(x - this.groundUsed * 2 * this.forward, y, entities))
+                        ? x - this.groundUsed * this.forward
+                        : x + this.groundUsed * this.forward
                 : x;
         this.setPositionX(x);
         this.setPositionY(y);

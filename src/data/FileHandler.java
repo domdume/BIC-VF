@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import common.Constant;
 import common.FileMode;
+import common.MapLimit;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
@@ -13,6 +13,7 @@ import logic.levels.Level1;
 public class FileHandler {
 
     private FileMode mode;
+    private int groundUsed = 30;
 
     public FileHandler(FileMode mode) {
         this.mode = mode;
@@ -53,8 +54,8 @@ public class FileHandler {
 
     private void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
         StringBuilder data = new StringBuilder();
-        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
-        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
+            int rows = MapLimit.MAP_WIDTH;
+        int cols = MapLimit.MAP_HEIGHT;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
         for (int j = 0; j < rows; j++) {
             for (int k = 0; k < cols; k++) {
@@ -84,8 +85,8 @@ public class FileHandler {
      */
 
     private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex) {
-        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
-        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
+        int rows = MapLimit.MAP_WIDTH;
+        int cols = MapLimit.MAP_HEIGHT;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
 
         try (FileOutputStream file = new FileOutputStream("./game.ser")) {
@@ -161,8 +162,8 @@ public class FileHandler {
      * @return the updated matrix.
      */
     private int[][] getEntityValues(Entity entity, int[][] map) {
-        int x = entity.getPositionX() / Constant.UNIT_SIZE;
-        int y = entity.getPositionY() / Constant.UNIT_SIZE;
+        int x = entity.getPositionX() / groundUsed;
+        int y = entity.getPositionY() / groundUsed;
         int id = entity.getLevelId();
         map[y][x] = id;
         return map;

@@ -20,7 +20,7 @@ public class Entity extends BaseEntity {
      * @return a true or false value depending on the position of the class
      */
     protected boolean withinBounds(int x, int y) {
-        return !(x < 0 || x > this.screen_width - this.unit_size || y < 0 || y > this.screen_height - this.unit_size);
+        return !(x < 0 || x > this.mapLimitWidth - this.groundUsed || y < 0 || y > this.mapLimitHeight - this.groundUsed);
     }
 
     /**

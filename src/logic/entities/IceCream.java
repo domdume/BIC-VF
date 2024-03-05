@@ -126,10 +126,10 @@ public class IceCream extends Entity {
      */
     private int getNewX(Direction direction, int x, int y, ArrayList<Entity> entities) {
         int stepSize = direction == Direction.LEFT ? -1 : 1;
-        return (canMove(x + this.unit_size * stepSize, y, entities)
-                && canMoveIndestructible(x + this.unit_size * stepSize, y, entities))
+        return (canMove(x + this.groundUsed * stepSize, y, entities)
+                && canMoveIndestructible(x + this.groundUsed * stepSize, y, entities))
                 && direction != Direction.NONE
-                        ? x + this.unit_size * stepSize
+                        ? x + this.groundUsed * stepSize
                         : x;
     }
 
@@ -148,10 +148,10 @@ public class IceCream extends Entity {
 
     private int getNewY(Direction direction, int x, int y, ArrayList<Entity> entities) {
         int stepSize = direction == Direction.UP ? -1 : 1;
-        return (canMove(x, y + this.unit_size * stepSize, entities)
-                && canMoveIndestructible(x, y + this.unit_size * stepSize, entities))
+        return (canMove(x, y + this.groundUsed * stepSize, entities)
+                && canMoveIndestructible(x, y + this.groundUsed * stepSize, entities))
                 && direction != Direction.NONE
-                        ? y + this.unit_size * stepSize
+                        ? y + this.groundUsed * stepSize
                         : y;
     }
 

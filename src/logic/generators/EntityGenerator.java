@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import common.Constant;
 import logic.entities.*;
 import logic.levels.Level;
 
@@ -29,6 +28,7 @@ public final class EntityGenerator {
     private static class Values {
 
         private Params params;
+        private int groundUsed = 30;
 
         /**
          * Constructs a Values object with the specified parameters.
@@ -47,7 +47,7 @@ public final class EntityGenerator {
          * @return the x-coordinate position of the entity
          */
         private int getX() {
-            return this.params.row * Constant.UNIT_SIZE;
+            return this.params.row * groundUsed;
         }
 
         /**
@@ -56,7 +56,7 @@ public final class EntityGenerator {
          * @return the y-coordinate position of the entity
          */
         private int getY() {
-            return this.params.col * Constant.UNIT_SIZE;
+            return this.params.col * groundUsed;
         }
 
         /**

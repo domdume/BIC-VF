@@ -54,24 +54,24 @@ public class Level implements Serializable {
         return this.levelIndex;
     }
 
-//    /**
-//     * Gets the number of rows in the map.
-//     *
-//     * @return The number of rows in the map, or 0 if the map is null.
-//     */
-//    public int getNumberRows() {
-//        return this.map != null ? this.map.length : 0;
-//    }
-//
-//    /**
-//     * Gets the number of columns in the map.
-//     *
-//     * @return The number of columns in the map, or 0 if the map is null or has no
-//     *         rows.
-//     */
-//    public int getNumberCols() {
-//        return this.map != null && this.map.length > 0 ? this.map[0].length : 0;
-//    }
+    /**
+     * Gets the number of rows in the map.
+     *
+     * @return The number of rows in the map, or 0 if the map is null.
+     */
+    public int getNumberRows() {
+        return getMap()[0].length;
+    }
+
+    /**
+     * Gets the number of columns in the map.
+     *
+     * @return The number of columns in the map, or 0 if the map is null or has no
+     *         rows.
+     */
+    public int getNumberCols() {
+        return getMap().length;
+    }
 
     public int[][] getMap() {
         return this.map;

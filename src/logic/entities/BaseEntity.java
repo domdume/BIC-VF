@@ -1,6 +1,7 @@
 package logic.entities;
 
-import common.Constant;
+import common.MapLimit;
+
 /**
  * An abstract base class representing entities in the game.
  */
@@ -9,10 +10,10 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     private int positionY; // The y-coordinate position of the entity
     protected int iD; // The unique identifier of the entity
     protected String name; // The name of the entity
-    protected int unit_size; // The size of a unit, used for calculations
+    protected int groundUsed;
     protected String imagePath; // The path to the image associated with the entity
-    protected int screen_width; // The width of the screen
-    protected int screen_height; // The height of the screen
+    protected int mapLimitWidth; // The width of the screen
+    protected int mapLimitHeight; // The height of the screen
 
 
     /**
@@ -28,9 +29,9 @@ public abstract class BaseEntity implements Identifiable, Positionable{
         this.positionY = positionY;
         this.iD = iD;
         this.name = name;
-        this.unit_size = Constant.UNIT_SIZE;
-        this.screen_width = Constant.SCREEN_WIDTH;
-        this.screen_height = Constant.SCREEN_HEIGHT;
+        this.groundUsed = 30;
+        this.mapLimitWidth = MapLimit.MAP_ROW;
+        this.mapLimitHeight = MapLimit.MAP_COLL;
         this.imagePath = parseImagePath(name, iD);
     }
 
@@ -107,14 +108,4 @@ public abstract class BaseEntity implements Identifiable, Positionable{
         this.iD = iD;
         this.imagePath = parseImagePath(this.name, iD);
     }
-    
-//    /**
-//     * Returns a string representation of the entity.
-//     *
-//     * @return a string containing the name and coordinates of the entity
-//     */
-//    @Override
-//    public String toString() {
-//        return String.format("Entity: %s - ( x: %d, y: %d )", this.name, this.x, this.y);
-//    }
 }
