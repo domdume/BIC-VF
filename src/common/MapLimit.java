@@ -4,9 +4,14 @@ import logic.levels.*;
 public class MapLimit {
     private static Level level; // Static reference to the current level
 
+    /**
+     * The method makes use of the information of the currently active level
+     * @param currentLevel level number
+     */
     public static void setLevel(Level currentLevel) {
         level = currentLevel;
     }
+
     public static int getMapHeight() {
         if (level != null) {
             return level.getNumberRows();

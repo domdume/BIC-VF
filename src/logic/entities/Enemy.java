@@ -11,13 +11,11 @@ public class Enemy extends Entity {
      * int forward: An integer representing the direction of movement.
      * Direction: The direction in which the enemy is currently moving.
      */
-
     public Enemy(int id, int x, int y) {
         super("Enemy", id, x, y);
         this.direction = id == 0 ? Direction.VERTICAL : Direction.HORIZONTAL;
         this.forward = 1;
     }
-
     /**
      * Gets the level identifier of the enemy.
      * 
@@ -27,7 +25,6 @@ public class Enemy extends Entity {
     public int getLevelId() {
         return this.iD == 0 ? 4 : 5;
     }
-
     /**
      * the method checks if the object is on an ice surface at the given coordinates
      * and changes the direction of the object if it is the case.
@@ -43,9 +40,6 @@ public class Enemy extends Entity {
         this.forward *= iceFound ? -1 : 1;
         return iceFound;
     }
-
-
-
     /**
      * the method checks if the object is on an indestructible object surface at the
      * given coordinates and changes the direction of the object if it is the case.
@@ -61,7 +55,6 @@ public class Enemy extends Entity {
         this.forward *= indestructibleFound ? -1 : 1;
         return indestructibleFound;
     }
-
     /**
      * The method checks if the object can move to the given coordinates without
      * colliding
@@ -82,7 +75,6 @@ public class Enemy extends Entity {
         }
         return this.withinBounds(x, y) && !ice;
     }
-
     /**
      * The method checks if the object can move to the given coordinates without
      * colliding
@@ -103,7 +95,6 @@ public class Enemy extends Entity {
         }
         return this.withinBounds(x, y) && !indestructible;
     }
-
     /**
      * The methods checks if the given coordinates are within the limits of the
      * screen,
@@ -122,7 +113,6 @@ public class Enemy extends Entity {
         this.forward = isWithinEdgeBounds ? -1 : isOutsideEdgeBounds ? 1 : this.forward;
         return !(isWithinEdgeBounds || isOutsideEdgeBounds);
     }
-
     /**
      * updates the coordinates of the object in the specified direction, provided
      * there are no obstacles

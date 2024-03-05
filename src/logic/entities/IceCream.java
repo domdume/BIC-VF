@@ -10,7 +10,6 @@ import logic.results.None;
 import logic.results.Points;
 
 public class IceCream extends Entity {
-
     /**
      * Constructs an Ice Cream object with the given parameters
      * 
@@ -21,7 +20,6 @@ public class IceCream extends Entity {
     public IceCream(int id, int x, int y) {
         super("IceCream", id, x, y);
     }
-
     /**
      * handles keyboard events and performs different actions in a game or
      * application
@@ -39,17 +37,14 @@ public class IceCream extends Entity {
         this.castCreateSpell(e, entities);
         return 0;
     }
-
     @Override
     public void setID(int iD) {
         super.setID(iD);
     }
-
     @Override
     public int getLevelId() {
         return this.iD == 0 ? 6 : 7;
     }
-
     /**
      * Checks if the entity can move to the specified position (x, y) without
      * colliding with an IceBlock entity.
@@ -72,7 +67,6 @@ public class IceCream extends Entity {
         }
         return this.withinBounds(x, y) && !foundIce;
     }
-
     /**
      * Checks if the IceCream entity can move to the specified position (x, y)
      * without colliding with an IndestructibleBlock entity.
@@ -95,7 +89,6 @@ public class IceCream extends Entity {
         }
         return this.withinBounds(x, y) && !foundIndestructible;
     }
-
     /**
      * Handles the collision between the IceCream entity and another entity.
      * Determines the outcome of the collision.
@@ -131,11 +124,10 @@ public class IceCream extends Entity {
                         ? x + this.groundUsed * stepSize
                         : x;
     }
-
     /**
      * calculates and returns a new Y coordinate for an entity that will move in a
      * given direction
-     * 
+     *
      * @param direction address to which the entity is addressed
      * @param x         position on x-axis
      * @param y         position on y-axis
@@ -144,7 +136,6 @@ public class IceCream extends Entity {
      *         function returns
      *         the new Y-coordinate. Otherwise, it returns the current Y coordinate.
      */
-
     private int getNewY(Direction direction, int x, int y, ArrayList<Entity> entities) {
         int stepSize = direction == Direction.UP ? -1 : 1;
         return (canMove(x, y + this.groundUsed * stepSize, entities)
@@ -153,7 +144,6 @@ public class IceCream extends Entity {
                         ? y + this.groundUsed * stepSize
                         : y;
     }
-
     /**
      * The method moves an entity in a given direction according to the key pressed,
      * taking into account the boundaries of the board and the entities on it
@@ -170,17 +160,14 @@ public class IceCream extends Entity {
         this.setPositionY(y);
         this.setPositionX(x);
     }
-
     private int getX(ArrayList<Entity> entities, int code, int x, int y) {
         return code == KeyEvent.VK_LEFT ? getNewX(Direction.LEFT, x, y, entities)
                 : code == KeyEvent.VK_RIGHT ? getNewX(Direction.RIGHT, x, y, entities) : x;
     }
-
     private int getY(ArrayList<Entity> entities, int code, int x, int y) {
         return code == KeyEvent.VK_UP ? getNewY(Direction.UP, x, y, entities)
                 : code == KeyEvent.VK_DOWN ? getNewY(Direction.DOWN, x, y, entities) : y;
     }
-
     // ID: 0 -> Create, ID: 1 -> Destroy
     /**
      * sets the spell identifier of an entity to 1 if the key pressed is SPACE and
@@ -192,7 +179,6 @@ public class IceCream extends Entity {
     private void setSpell(KeyEvent e) {
         this.setID(e.getKeyCode() == KeyEvent.VK_SPACE ? this.iD == 0 ? 1 : 0 : this.iD);
     }
-
     /**
      * The method adds an ice entity at a given position on the board, as long as
      * the entity calling the method
@@ -215,7 +201,6 @@ public class IceCream extends Entity {
         entities.set(index, addedIce ? new IceBlock(0, x, y) : entities.get(index));
         return addedIce;
     }
-
     /**
      * The method removes an ice entity at a given position on the board, as long as
      * the entity calling the method
@@ -239,7 +224,6 @@ public class IceCream extends Entity {
         entities.set(index, iceRemoved ? null : entities.get(index));
         return iceRemoved;
     }
-
     /**
      * an address based on the code of the pressed key. The function is used to
      * determine
@@ -252,7 +236,6 @@ public class IceCream extends Entity {
         return e.getKeyCode() == KeyEvent.VK_A ? Direction.LEFT
                 : e.getKeyCode() == KeyEvent.VK_D ? Direction.RIGHT : Direction.NONE;
     }
-
     /**
      * an address based on the code of the pressed key. The function is used to
      * determine
@@ -265,7 +248,6 @@ public class IceCream extends Entity {
         return e.getKeyCode() == KeyEvent.VK_S ? Direction.DOWN
                 : e.getKeyCode() == KeyEvent.VK_W ? Direction.UP : Direction.NONE;
     }
-
     /**
      * Handles the process of casting a spell by the IceCream entity.
      *
@@ -280,7 +262,6 @@ public class IceCream extends Entity {
     private boolean castSpell(int id, ArrayList<Entity> entities, int i, int x, int y) {
         return id == 0 ? this.addIce(i, x, y, entities) : this.removeIce(i, x, y, entities);
     }
-
     /**
      * Handles the process of spell casting, determining the new coordinates based
      * on the key event
@@ -295,7 +276,6 @@ public class IceCream extends Entity {
         int x = this.getNewX(getKeyXDirection(e), this.getPositionX(), this.getPositionY(), null);
         return isValidMove(x, y) && this.castSpell(this.iD, entities, i, x, y);
     }
-
     /**
      * Checks if the new position (x, y) is valid
      *
@@ -307,7 +287,6 @@ public class IceCream extends Entity {
     private boolean isValidMove(int x, int y) {
         return x != this.getPositionX() || y != this.getPositionY();
     }
-
     /**
      * Spell to create an obstacle entity at the location determined by the
      * key event
@@ -321,7 +300,6 @@ public class IceCream extends Entity {
             spellCasted = entities.get(i) == null && this.handleSpellCasting(entities, i, e);
         }
     }
-
     /**
      * Spell to destroy an ice entity at the location determined by the key event
      * 
@@ -334,7 +312,6 @@ public class IceCream extends Entity {
             spellCasted = isIceEntity(entities, i) && handleSpellCasting(entities, i, e);
         }
     }
-
     /**
      * Determines if the entity at the specified index in the entities list is an
      * Ice entity

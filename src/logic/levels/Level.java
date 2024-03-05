@@ -9,7 +9,6 @@ public class Level implements Serializable {
     protected int levelIndex;
     protected int enemyCount;
     protected int currentScore;
-
     /**
      * Initializes the game state with the provided map, current score, and level
      * index.
@@ -26,7 +25,6 @@ public class Level implements Serializable {
         this.levelIndex = levelIndex;
         this.setMap(map);
     }
-
     /**
      * Retrieves the total score accumulated in the level.
      * 
@@ -35,7 +33,6 @@ public class Level implements Serializable {
     public int getScore() {
         return this.score;
     }
-
     /**
      * Retrieves the current score of the player.
      * 
@@ -44,7 +41,6 @@ public class Level implements Serializable {
     public int getCurrentScore() {
         return this.currentScore;
     }
-
     /**
      * Retrieves the index of the current level.
      * 
@@ -53,7 +49,6 @@ public class Level implements Serializable {
     public int getLevelIndex() {
         return this.levelIndex;
     }
-
     /**
      * Gets the number of rows in the map.
      *
@@ -62,7 +57,6 @@ public class Level implements Serializable {
     public int getNumberRows() {
         return getMap()[0].length;
     }
-
     /**
      * Gets the number of columns in the map.
      *
@@ -72,11 +66,9 @@ public class Level implements Serializable {
     public int getNumberCols() {
         return getMap().length;
     }
-
     public int[][] getMap() {
         return this.map;
     }
-
     /**
      * Sets the map for the game, and calculates scores and enemy count based on the
      * map.

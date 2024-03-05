@@ -15,7 +15,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     protected int mapLimitWidth; // The width of the screen
     protected int mapLimitHeight; // The height of the screen
 
-
     /**
      * Constructs a BaseEntity object with the given parameters.
      * 
@@ -34,9 +33,8 @@ public abstract class BaseEntity implements Identifiable, Positionable{
         this.mapLimitHeight = MapLimit.MAP_COLL;
         this.imagePath = parseImagePath(name, iD);
     }
-
     /**
-     *
+     *Take the class name and ID and convert them to lowercase.
      * @param name the name of the class
      * @param id   the number with which it was designated
      * @return the image path associate with a class as a String
@@ -44,7 +42,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     protected String parseImagePath(String name, int id) {
         return "images/" + name.toLowerCase() + id + ".png";
     }
-    
     /**
      * Sets the x-coordinate position of the entity.
      * 
@@ -53,7 +50,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public void setPositionX(int positionX) {
         this.positionX = positionX;
     }
-
     /**
      * Sets the y-coordinate position of the entity.
      * 
@@ -62,7 +58,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public void setPositionY(int positionY) {
         this.positionY = positionY;
     }
-
     /**
      * Gets the x-coordinate position of the entity.
      * 
@@ -71,7 +66,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public int getPositionX() {
         return this.positionX;
     }
-
     /**
      * Gets the y-coordinate position of the entity.
      * 
@@ -80,7 +74,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public int getPositionY() {
         return this.positionY;
     }
-
     /**
      * Gets the image path associated with the entity.
      * 
@@ -89,7 +82,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public String getImagePath() {
         return this.imagePath;
     }
-
     /**
      * Gets the level identifier of the entity.
      * 
@@ -98,7 +90,6 @@ public abstract class BaseEntity implements Identifiable, Positionable{
     public int getLevelId() {
         return this.iD;
     }
-
     /**
      * it sets out the number designated for the class
      * 
@@ -106,6 +97,5 @@ public abstract class BaseEntity implements Identifiable, Positionable{
      */
     public void setID(int iD) {
         this.iD = iD;
-        this.imagePath = parseImagePath(this.name, iD);
-    }
+        this.imagePath = parseImagePath(this.name, iD); }
 }

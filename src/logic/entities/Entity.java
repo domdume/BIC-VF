@@ -10,7 +10,6 @@ public class Entity extends BaseEntity {
     public Entity(String name, int id, int x, int y) {
         super(name, id, x, y);
     }
-
     /**
      * it allows that the class who extends from entity checks the position and
      * proof that they are inside the limits
@@ -22,7 +21,6 @@ public class Entity extends BaseEntity {
     protected boolean withinBounds(int x, int y) {
         return !(x < 0 || x > this.mapLimitWidth - this.groundUsed || y < 0 || y > this.mapLimitHeight - this.groundUsed);
     }
-
     /**
      * the function goes through the list of entities and if the x and y coordinates
      * are equal to the coordinate it returns false and cannot move, otherwise if it
@@ -71,7 +69,6 @@ public class Entity extends BaseEntity {
     protected boolean isSamePosition(int x, int y, Entity entity) {
         return entity.getPositionX() == x && entity.getPositionY() == y;
     }
-
     /**
      * The method checks whether the entity has collided or not.
      * 
@@ -81,7 +78,6 @@ public class Entity extends BaseEntity {
     public GameResult handleCoalitions(Entity entity) {
         return new None();
     }
-
     /**
      * Moves the entity based on the game logic.
      * 
@@ -91,7 +87,6 @@ public class Entity extends BaseEntity {
     public int move(ArrayList<Entity> entities) {
         return 0;
     }
-
     /**
      * Handles the key event for entity movement.
      * 

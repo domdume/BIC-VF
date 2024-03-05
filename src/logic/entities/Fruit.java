@@ -1,7 +1,6 @@
 package logic.entities;
 
 public class Fruit extends Entity {
-    
     /**
      * Constructs a Fruit object with the given parameters.
      * 
@@ -12,7 +11,6 @@ public class Fruit extends Entity {
     public Fruit(int id, int x, int y) {
         super("Fruit", id, x, y);
     }
-
     /**
      * Gets the level identifier of the fruit.
      * 

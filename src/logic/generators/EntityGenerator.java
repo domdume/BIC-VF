@@ -1,14 +1,10 @@
 package logic.generators;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import logic.entities.*;
 import logic.levels.Level;
-
 public final class EntityGenerator {
-
     /**
      * Generates a list of entities based on the provided level configuration.
      * 
@@ -24,12 +20,10 @@ public final class EntityGenerator {
         }
         return entities;
     }
-
     private static class Values {
 
         private Params params;
         private int groundUsed = 30;
-
         /**
          * Constructs a Values object with the specified parameters.
          * 
@@ -40,7 +34,6 @@ public final class EntityGenerator {
         public Values(int row, int col, int val) {
             this.params = new Params(row, col, val);
         }
-
         /**
          * Calculates and returns the x-coordinate position of the entity.
          * 
@@ -49,7 +42,6 @@ public final class EntityGenerator {
         private int getX() {
             return this.params.row * groundUsed;
         }
-
         /**
          * Calculates and returns the y-coordinate position of the entity.
          * 
@@ -58,7 +50,6 @@ public final class EntityGenerator {
         private int getY() {
             return this.params.col * groundUsed;
         }
-
         /**
          * Determines the ID of the entity based on its value.
          * 
@@ -68,7 +59,6 @@ public final class EntityGenerator {
             int val = this.params.val;
             return val == 1 || val == 2 || val == 4 || val == 6 || val == 8 ? 0 : 1;
         }
-
         /**
          * Creates a dictionary mapping entity values to entity objects.
          * 
@@ -87,7 +77,6 @@ public final class EntityGenerator {
 
             return entityDictionary;
         }
-
         /**
          * Retrieves the entity object based on the stored parameters.
          * 
@@ -97,11 +86,9 @@ public final class EntityGenerator {
             return this.storage().getOrDefault(this.params.val, null);
         }
     }
-
     /**
      * A record class to represent the parameters used for generating entities.
      */
     private static record Params(int row, int col, int val) {
     }
-
 }
