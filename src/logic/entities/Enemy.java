@@ -39,10 +39,12 @@ public class Enemy extends Entity {
      *         coordinates or not.
      */
     private boolean checkIceBlock(int x, int y, Entity entity) {
-        boolean iceFound = entity instanceof IceBlock && entity.getPositionX() == x && entity.getPositionY() == y;
+        boolean iceFound = entity instanceof IceBlock && isSamePosition(x, y, entity);
         this.forward *= iceFound ? -1 : 1;
         return iceFound;
     }
+
+
 
     /**
      * the method checks if the object is on an indestructible object surface at the
@@ -55,8 +57,7 @@ public class Enemy extends Entity {
      *         given coordinates or not.
      */
     private boolean checkIndestructibleBlock(int x, int y, Entity entity) {
-        boolean indestructibleFound = entity instanceof IndestructibleBlock && entity.getPositionX() == x
-                && entity.getPositionY() == y;
+        boolean indestructibleFound = entity instanceof IndestructibleBlock && isSamePosition(x,y,entity);
         this.forward *= indestructibleFound ? -1 : 1;
         return indestructibleFound;
     }

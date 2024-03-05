@@ -38,7 +38,7 @@ public class Entity extends BaseEntity {
      */
     protected boolean canMove(int x, int y, ArrayList<Entity> entities) {
         for (Entity entity : entities) {
-            return !(entity != null && entity.getPositionX() == x && entity.getPositionY() == y);
+            return !(entity != null && isSamePosition(x,y,entity));
         }
         return this.withinBounds(x, y);
     }
@@ -56,9 +56,20 @@ public class Entity extends BaseEntity {
      */
     protected boolean canMoveIndestructible(int x, int y, ArrayList<Entity> entities) {
         for (Entity entity : entities) {
-            return !(entity != null && entity.getPositionX() == x && entity.getPositionY() == y);
+            return !(entity != null && isSamePosition(x, y, entity));
         }
         return this.withinBounds(x, y);
+    }
+    /**
+     * the boolean cheeks if the entity is on the same position given the coordinates
+     * @param x      position on x-axis
+     * @param y      position on y-axis
+     * @param entity a parameter entity
+     * @return a true or false value depending on whether the obstacle is on the
+     *          given coordinates or not.
+     */
+    protected boolean isSamePosition(int x, int y, Entity entity) {
+        return entity.getPositionX() == x && entity.getPositionY() == y;
     }
 
     /**

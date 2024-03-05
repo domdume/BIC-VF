@@ -263,9 +263,9 @@ public class Game {
         return scoreAdjusted ;
     }
     /**
-     * Checks collisions of entities in the game, particularly focusing on IceCream entities.
+     * Checks collisions of entities in the game, particularly focusing on the main Player.
      * @return The result is the number of succesful collisions handled or 1 if there were no
-     * IceCream entities to handle collisions for.
+     * Player entities to handle collisions for.
      */
     /**
      * Checks for collisions between entities in the game.
@@ -275,9 +275,18 @@ public class Game {
     public int checkCollitions() {
         int collisionsChecked  = 0;
         for (Entity entity : this.entities) {
-            collisionsChecked  = entity != null && entity instanceof IceCream ? this.handlePlayerCollitions(entity) : 1;
+            collisionsChecked  = isTheMainPlayer(entity) ? this.handlePlayerCollitions(entity) : 1;
         }
         return collisionsChecked ;
+    }
+
+    /**
+     * Checks if the entity is the player, particularly the focus on the IceCream entity
+     * @param entity Entity that it's going to be checked
+     * @return True if the entity es an IceCream, otherwise it's not a player entity
+     */
+    private static boolean isTheMainPlayer(Entity entity) {
+        return entity != null && entity instanceof IceCream;
     }
 
     /**

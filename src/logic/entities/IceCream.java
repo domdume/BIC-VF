@@ -88,7 +88,7 @@ public class IceCream extends Entity {
         entities = entities == null ? new ArrayList<>() : entities;
         boolean foundIndestructible = false;
         for (Entity entity : entities) {
-            if (entity instanceof IndestructibleBlock && entity.getPositionX() == x && entity.getPositionY() == y) {
+            if (entity instanceof IndestructibleBlock && isSamePosition(x,y,entity)) {
                 foundIndestructible = true;
                 break; // Ya que se encontró un IndestructibleBlock, no necesitamos seguir buscando
             }
@@ -107,7 +107,8 @@ public class IceCream extends Entity {
      */
     @Override
     public GameResult handleCoalitions(Entity entity) {
-        return entity != null && entity.getPositionX() == this.getPositionX() && entity.getPositionY() == this.getPositionY()
+        return entity != null && isSamePosition(this.getPositionX(),this.getPositionY(),entity)
+//                entity.getPositionX() == this.getPositionX() && entity.getPositionY() == this.getPositionY()
                 ? entity instanceof Enemy ? new Death() : entity instanceof Fruit ? new Points() : new None()
                 : new None();
     }
