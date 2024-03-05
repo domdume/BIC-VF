@@ -108,11 +108,9 @@ public class IceCream extends Entity {
     @Override
     public GameResult handleCoalitions(Entity entity) {
         return entity != null && isSamePosition(this.getPositionX(),this.getPositionY(),entity)
-//                entity.getPositionX() == this.getPositionX() && entity.getPositionY() == this.getPositionY()
                 ? entity instanceof Enemy ? new Death() : entity instanceof Fruit ? new Points() : new None()
                 : new None();
     }
-
     /**
      * calculates and returns a new X coordinate for an entity that will move in a
      * given direction
