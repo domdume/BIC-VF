@@ -207,7 +207,6 @@ public class Game {
         this.setRunning(isRunning);
         return handleResult ;
     }
-
     /**
      * Checks if there is a death collision between the player entity and other entities.
      * 
@@ -218,7 +217,6 @@ public class Game {
     private boolean isDeathCollition(Entity entity, int i) {
         return entity.handleCoalitions(this.entities.get(i)) instanceof Death;
     }
-
     /**
      * Checks if the player entity is collecting food.
      * 
@@ -229,7 +227,6 @@ public class Game {
     private boolean isCollectingFood(Entity entity, int i) {
         return entity.handleCoalitions(this.entities.get(i)) instanceof Points;
     }
-
      /**
      * Adjusts the level after completing a level.
      * 
@@ -243,7 +240,6 @@ public class Game {
         int levelAdjusted  = this.currentLevelIndex <= this.levelManager.getMaxLevel() ? this.restartGame() : 1;
         return levelAdjusted ;
     }
-
      /**
      * Checks the score of the game and adjusts the level accordingly.
      * 
@@ -263,23 +259,26 @@ public class Game {
         return scoreAdjusted ;
     }
     /**
-     * Checks collisions of entities in the game, particularly focusing on IceCream entities.
-     * @return The result is the number of succesful collisions handled or 1 if there were no
-     * IceCream entities to handle collisions for.
-     */
-    /**
-     * Checks for collisions between entities in the game.
+     * Checks collisions of entities in the game, particularly focusing on the main Player.
      * 
-     * @return Always returns 0.
+     * @return The result is the number of succesful collisions handled or 1 if there were no
+     * Player entities to handle collisions for. Always returns 0.
      */
     public int checkCollitions() {
         int collisionsChecked  = 0;
         for (Entity entity : this.entities) {
-            collisionsChecked  = entity != null && entity instanceof IceCream ? this.handlePlayerCollitions(entity) : 1;
+            collisionsChecked  = isTheMainPlayer(entity) ? this.handlePlayerCollitions(entity) : 1;
         }
         return collisionsChecked ;
     }
-
+    /**
+     * Checks if the entity is the player, particularly the focus on the IceCream entity
+     * @param entity Entity that it's going to be checked
+     * @return True if the entity es an IceCream, otherwise it's not a player entity
+     */
+    private static boolean isTheMainPlayer(Entity entity) {
+        return entity != null && entity instanceof IceCream;
+    }
     /**
      * Generates entities for the current level of the game.
      * 
@@ -293,7 +292,6 @@ public class Game {
         this.totalScore = this.score + score;
         this.entities = EntityGenerator.generate(this.currentLevel);
     }
-
     /**
      * Handles the actions to be taken when the game is running.
      * 
@@ -305,7 +303,6 @@ public class Game {
         this.checkScore();
         return 0;
     }
-
     /**
      * Performs an action in the game, such as handling collisions and moving entities.
      * 

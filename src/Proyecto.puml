@@ -1,11 +1,13 @@
 @startuml
 
 package common{
-    class Constant{
+    class MapLimit{
         + level: Level
-        + SCREEN_WIDTH: int
-        + SCREEN_HEIGHT: int
-        + UNIT_SIZE: int
+        + setLevet(level : Level)
+        + getMapHeight()
+        + getMapWidth()
+        + MAP_WIDTH: int
+        + MAP_HEIGHT: int
     }
 
     enum Direction{
@@ -48,10 +50,10 @@ package logic{
             - positionY: int
             # iD: int
             # name: String
-            # unit_size: int
+            # groundUsed: int
             # imagePath: String
-            # screen_width: int
-            # screen_height: int
+            # mapLimitWidth: int
+            # mapLimitHeight: int
             # parseImagePath(name: String, iD: int): String
             + setPositionX(positionX: int): void
             + setPositionY(positionY: int): void
@@ -214,6 +216,7 @@ package logic{
         - handlePlayerCollitions(entity: Entity): int
         - isDeathCollition(entity: Entity, i: int): boolean
         - isCollectingFood(entity: Entity, i: int): boolean
+        - isPlayerEntitu (entity: Entity)) : boolean
         - adjustLevel(): int
         + checkScore(): int
         + checkCollitions(): int
@@ -381,13 +384,10 @@ GamePanel --|> JPanel
 GamePanel ..|> ActionListener
 GameFrame --|> JFrame
 
-Constant ..> levels
-FileHandler ..> Constants
+MapLimit ..> levels
 FileHandler ..> FileMode
 FileHandler ..> Entity
 FileHandler ..> Level
-FileHandler ..> Level1
-BaseEntity ..> Constants
 Enemy ..> Direction
 Entity ..> GameResult
 Entity ..> None
@@ -396,7 +396,6 @@ IceCream ..> Death
 IceCream ..> GameResult
 IceCream ..> None
 IceCream ..> Points
-EntityGenerator ..> Constants
 EntityGenerator ..> entities
 EntityGenerator ..> Level
 Game ..> Entity
@@ -406,15 +405,15 @@ Game ..> Level
 Game ..> LevelManager
 Game ..> Death
 Game ..> Points
-GameOverMenu ..> Constants
+GameOverMenu ..> Constant
 GameOverMenu ..> View
-MainMenu ..> Constants
+MainMenu ..> Constant
 MainMenu ..> View
 Modal ..> View
-PauseMenu ..> Constants
+PauseMenu ..> Constant
 PauseMenu ..> View
 View ..> Sketcher
-Sketcher ..> Constants
+Sketcher ..> Constant
 Sketcher ..> Entity
 GamePanel ..> Game
 GamePanel ..> Sketcher

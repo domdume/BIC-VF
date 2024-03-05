@@ -1,7 +1,6 @@
 package logic.entities;
 
 public class IndestructibleBlock extends Entity {
-
     /**
      * Constructs an Indestructible object with the given parameters.
      *
@@ -12,7 +11,6 @@ public class IndestructibleBlock extends Entity {
     public IndestructibleBlock(int id, int x, int y) {
         super("Indestructible", id, x, y);
     }
-
     /**
      * Retrieves the level ID associated with the Indestructible entity.
      *
@@ -22,5 +20,4 @@ public class IndestructibleBlock extends Entity {
     public int getLevelId() {
         return 8;
     }
-
 }

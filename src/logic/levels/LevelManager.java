@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class LevelManager {
-
     /**
      * Retrieves the level corresponding to the provided index. If the requested level is not present, returns a new Level1() object by default.
      * 
@@ -14,7 +13,6 @@ public class LevelManager {
     public Level getLevel(int level) {
         return this.storage().getOrDefault(level, new Level1());
     }
-
     /**
      * Returns the maximum number of available levels.
      * 
@@ -23,7 +21,6 @@ public class LevelManager {
     public int getMaxLevel() {
         return this.storage().size();
     }
-
     /**
      * Creates and returns a dictionary mapping integers to Level objects.
      * 

@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import common.Constant;
 import common.FileMode;
+import common.MapLimit;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
@@ -13,11 +13,19 @@ import logic.levels.Level1;
 public class FileHandler {
 
     private FileMode mode;
+    private int groundUsed = 30;
 
     public FileHandler(FileMode mode) {
         this.mode = mode;
     }
 
+    /**
+     * The method saves the current game state by calling the appropriate method based on the current
+     * game mode, either saving the data as a text file or as a serialized objec.
+     * @param entities An ArrayList of Entity objects.
+     * @param currentScore An integer representing the current score.
+     * @param levelIndex An integer representing the index of the current level.
+     */
     public void saveGame(ArrayList<Entity> entities, int currentScore, int levelIndex) {
         switch (this.mode) {
             case TEXT:
@@ -30,6 +38,10 @@ public class FileHandler {
         }
     }
 
+    /**
+     * The method loads the file
+     * @return new Level
+     */
     public Level loadGame() {
         switch (this.mode) {
             case TEXT:
@@ -42,7 +54,6 @@ public class FileHandler {
                 return new Level1();
         }
     }
-
     /**
      * it's responsible for storing an entity's information in a file.
      *
@@ -53,8 +64,8 @@ public class FileHandler {
 
     private void saveEntityFile(ArrayList<Entity> entities, int currentScore, int levelIndex) {
         StringBuilder data = new StringBuilder();
-        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
-        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
+            int rows = MapLimit.MAP_WIDTH;
+        int cols = MapLimit.MAP_HEIGHT;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
         for (int j = 0; j < rows; j++) {
             for (int k = 0; k < cols; k++) {
@@ -74,7 +85,6 @@ public class FileHandler {
             // Just Skip
         }
     }
-
     /**
      * it's responsible for storing an entity's information in a file.
      *
@@ -82,10 +92,9 @@ public class FileHandler {
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
      */
-
     private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex) {
-        int rows = Constant.SCREEN_WIDTH / Constant.UNIT_SIZE;
-        int cols = Constant.SCREEN_HEIGHT / Constant.UNIT_SIZE;
+        int rows = MapLimit.MAP_WIDTH;
+        int cols = MapLimit.MAP_HEIGHT;
         Level level = this.entitiesToLevel(entities, rows, cols, currentScore, levelIndex);
 
         try (FileOutputStream file = new FileOutputStream("./game.ser")) {
@@ -98,7 +107,6 @@ public class FileHandler {
             // Just Skip
         }
     }
-
     /**
      * reads the game level serialized file and parses it in order to load the
      * position of game entities and score achieved at game saving time.
@@ -106,7 +114,6 @@ public class FileHandler {
      * @return new Level, if the file is invalid, it returns the Level 1 by default
      */
     private Level loadSerializedLevel() {
-
         Level level = null;
         try {
             FileInputStream fileIn = new FileInputStream("game.ser");
@@ -123,7 +130,6 @@ public class FileHandler {
         }
         return level == null ? new Level1() : level;
     }
-
     /**
      * reads the game entity file and parses it in order to load the position of
      * game entities
@@ -148,7 +154,6 @@ public class FileHandler {
         return fullData == "" ? new Level1() : this.textToLevel(fullData);
 
     }
-
     /**
      * It uses the coordinates of the entity to calculate the position
      * in the matrix and assigns the entity level identifier to that position in the
@@ -161,13 +166,12 @@ public class FileHandler {
      * @return the updated matrix.
      */
     private int[][] getEntityValues(Entity entity, int[][] map) {
-        int x = entity.getPositionX() / Constant.UNIT_SIZE;
-        int y = entity.getPositionY() / Constant.UNIT_SIZE;
+        int x = entity.getPositionX() / groundUsed;
+        int y = entity.getPositionY() / groundUsed;
         int id = entity.getLevelId();
         map[y][x] = id;
         return map;
     }
-
     /**
      * Converts a list of entities into a game level.
      *
@@ -187,7 +191,6 @@ public class FileHandler {
         level.init(map, currentScore, levelIndex);
         return level;
     }
-
     /**
      * Turns a text into a Level object in the game.
      *
@@ -216,7 +219,6 @@ public class FileHandler {
         // Returns the created Level object.
         return level;
     }
-
     /**
      * Converts a text string to a two-dimensional array of integers.
      *
@@ -245,9 +247,7 @@ public class FileHandler {
                 matrix[j][i] = Integer.parseInt(elements[j]);
             }
         }
-
         // Return the generated matrix.
         return matrix;
     }
-
 }
