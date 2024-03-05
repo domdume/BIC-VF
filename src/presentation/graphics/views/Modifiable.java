@@ -1,7 +1,6 @@
 package presentation.graphics.views;
 
 import java.awt.Component; // Fundamental class in AWT, it represents the components of the user interface (Buttons, text fields)
-
 /**
  * Interface used to encapsulate the different graphical views of the user
  * interface and work with them uniformly through the common interface

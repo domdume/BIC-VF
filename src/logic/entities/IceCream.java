@@ -1,5 +1,4 @@
 package logic.entities;
-
 import java.util.ArrayList;
 import java.awt.event.KeyEvent;
 
@@ -8,7 +7,6 @@ import logic.results.Death;
 import logic.results.GameResult;
 import logic.results.None;
 import logic.results.Points;
-
 public class IceCream extends Entity {
     /**
      * Constructs an Ice Cream object with the given parameters

@@ -5,7 +5,6 @@ import javax.swing.*; // Provides graphical and user interface components for Ja
 import java.awt.event.*; // Provides classes and interfaces for working with events in AWT (such as ActionEvent)
 
 import presentation.graphics.Sketcher; // Provides functionality for drawing in the view
-
 /**
  * Represents a graphical view in the game. implements interfaces to handle
  * events and provides methods to set
@@ -13,12 +12,10 @@ import presentation.graphics.Sketcher; // Provides functionality for drawing in 
  * a Sketcher object to draw in the view
  */
 public class View extends JPanel implements ActionListener, Modifiable {
-
     public static final float OPAQUE_VIEW_VALUE = 1f;
     private float viewTransparencyValue; // Float that representes the view transparency value
     protected Sketcher sketcher; // Object Sketcher Used to draw in view
     protected Color viewBackGroundColor; // Object Color that represents the view background color
-
     /**
      * Constructor
      * 
@@ -33,9 +30,8 @@ public class View extends JPanel implements ActionListener, Modifiable {
         this.setFocusable(false); // Will not be able to respond to keyboard and mouse events
         this.setOpaque(false); // allows the content behind View to be visible
         this.sketcher = new Sketcher(this); // used to draw content in the view, that is why the view is passed as a
-                                            // parameter
+        // parameter
     }
-
     /**
      * Allows to set the transparency of the view
      * 
@@ -45,7 +41,6 @@ public class View extends JPanel implements ActionListener, Modifiable {
     protected void setViewTransparencyValue(float viewTransparencyValue) {
         this.viewTransparencyValue = viewTransparencyValue;
     }
-
     /**
      * This method is part of the ActionListener interface and is invoked when an
      * action event
@@ -66,7 +61,6 @@ public class View extends JPanel implements ActionListener, Modifiable {
         // reflected visually on the screen
         repaint();
     }
-
     /**
      * It is called automatically every time the view needs to be repainted. The
      * drawBackground method
@@ -86,7 +80,6 @@ public class View extends JPanel implements ActionListener, Modifiable {
         // draws the background of the view
         this.sketcher.drawBackground(graphics, bounds, this.viewBackGroundColor, this.viewTransparencyValue);
     }
-
     /**
      * The rectangle will start in the top left corner of the component, and it
      * ensures that the rectangle

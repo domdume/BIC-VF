@@ -6,16 +6,13 @@ import presentation.graphics.views.View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
 //import presentation.GameLogic;
 public class MainMenu extends View {
-
     private JButton button1;
     private JButton button2;
     private JButton button3;
     private Modal modal;
     private String msg;
-
     /**
      * Constructs the MainMenu with a white background, sets up the modal, and creates buttons.
      */
@@ -28,7 +25,6 @@ public class MainMenu extends View {
         this.createButtons();
         modal.add(this);
     }
-
      /**
      * Creates buttons for the MainMenu and sets their positions and cursors.
      */
@@ -48,7 +44,6 @@ public class MainMenu extends View {
         this.button3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button3);
     }
-
     /**
      * Sets the ActionListener for the "Start Game" button.
      *
@@ -58,13 +53,11 @@ public class MainMenu extends View {
 
         this.button1.addActionListener(listener);
     }
-
     // Sets the ActionListener for the "Load Game" button
     public void setLoadGameListener(ActionListener listener) {
 
         this.button2.addActionListener(listener);
     }
-
     /**
      * Sets the action listener for the "Exit" button.
      *
@@ -73,7 +66,6 @@ public class MainMenu extends View {
     public void setExitListener(ActionListener listener) {
         this.button3.addActionListener(listener);
     }
-
     /**
      * Overrides the paintComponent method to draw text on the panel.
      *
@@ -84,7 +76,6 @@ public class MainMenu extends View {
         this.sketcher.drawText(graphics, this, Color.RED, this.msg, Constant.SCREEN_WIDTH / 2,
                 Constant.SCREEN_HEIGHT / 4);
     }
-
     /**
      * Returns the modal component.
      *

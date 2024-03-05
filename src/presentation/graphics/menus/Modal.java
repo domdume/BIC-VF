@@ -4,7 +4,6 @@ import java.awt.*;
 import presentation.graphics.views.View;
 
 public class Modal extends View {
-
     /**
      * Constructs a Modal instance with the specified transparency.
      *
@@ -14,5 +13,4 @@ public class Modal extends View {
         super(Color.BLACK);
         this.setViewTransparencyValue(alpha);
     }
-
 }
