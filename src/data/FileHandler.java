@@ -86,7 +86,7 @@ public class FileHandler {
      * @param entities     is an ArrayList of class Entity.
      * @param currentScore an integer representing the current score of the player.
      * @param levelIndex   an integer representing the index of the current level.
-     * @param mapLimit
+     * @param mapLimit     an MapLimit object that allows to get the size of the map
      */
     private void saveSerializedLevel(ArrayList<Entity> entities, int currentScore, int levelIndex, MapLimit mapLimit) {
         int rows = mapLimit.getMapWidth();
@@ -97,7 +97,6 @@ public class FileHandler {
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(level);
             out.close();
-            file.close();
         } catch (IOException e) {
             e.printStackTrace();
             // Just Skip
@@ -117,14 +116,8 @@ public class FileHandler {
             level = (Level) in.readObject();
             in.close();
             fileIn.close();
-        } catch (IOException i) {
+        } catch (IOException | ClassNotFoundException i) {
             new Level1();
-            //i.printStackTrace();
-            // Just Skip
-        } catch (ClassNotFoundException c) {
-            new Level1();
-            //c.printStackTrace();
-            // Just Skip
         }
         return level == null ? new Level1() : level;
     }
