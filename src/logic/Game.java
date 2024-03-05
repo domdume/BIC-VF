@@ -10,6 +10,7 @@ import logic.levels.Level;
 import logic.levels.LevelManager;
 import logic.results.Death;
 import logic.results.Points;
+import presentation.GameFrame;
 
 public class Game {
 

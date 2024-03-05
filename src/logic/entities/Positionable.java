@@ -1,5 +1,4 @@
 package logic.entities;
-
 public interface Positionable {
     /**
      * sets out a number as position

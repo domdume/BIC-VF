@@ -1,5 +1,4 @@
 package data;
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -9,16 +8,12 @@ import common.MapLimit;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
-
 public class FileHandler {
-
     private FileMode mode;
     private int groundUsed = 30;
-
     public FileHandler(FileMode mode) {
         this.mode = mode;
     }
-
     /**
      * The method saves the current game state by calling the appropriate method based on the current
      * game mode, either saving the data as a text file or as a serialized objec.
@@ -37,7 +32,6 @@ public class FileHandler {
                 break;
         }
     }
-
     /**
      * The method loads the file
      * @return new Level

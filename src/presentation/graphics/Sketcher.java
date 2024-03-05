@@ -9,16 +9,13 @@ import java.awt.image.BufferedImage; // This class represents an image saved in 
 
 import presentation.Constant;
 import logic.entities.Entity;
-
 /**
  * The class is for drawing graphics in the Java GUI game. Provides methods for
  * drawing the components of the game (entities,
  * scores, and backgrounds. It can also draw text on the screen)
  */
 public class Sketcher {
-
     private JPanel panel; // Saves the panel on which graphic elements are drawn.
-
     /**
      * The constructor takes a panel as a parameter and assigns it to the attribute
      * 
@@ -28,7 +25,6 @@ public class Sketcher {
     public Sketcher(JPanel enteredPanel) {
         this.panel = enteredPanel;
     }
-
     /**
      * Iterates through the list of entities and draws each one by calling the
      * drawImage method
@@ -46,7 +42,6 @@ public class Sketcher {
         }
         return tmp;
     }
-
     /**
      * Draws the score in the graphical context specified by graphics.
      * 
@@ -64,7 +59,6 @@ public class Sketcher {
         // Draw the scoring chain in the graphical context (String - coordinates - size)
         graphics.drawString(score, placeTheTextAtTheTopRightOfTheScreen(metrics, score), getSizeOfTheFont(graphics));
     }
-
     /**
      * gets the size of the font used
      * 
@@ -75,7 +69,6 @@ public class Sketcher {
     private static int getSizeOfTheFont(Graphics graphics) {
         return graphics.getFont().getSize();
     }
-
     /**
      * Calculates the x position where the text should be drawn at the top right of
      * the screen
@@ -87,7 +80,6 @@ public class Sketcher {
     private static int placeTheTextAtTheTopRightOfTheScreen(FontMetrics metrics, String score) {
         return Constant.SCREEN_WIDTH - metrics.stringWidth(score) - Constant.UNIT_SIZE * 2;
     }
-
     /**
      * Draws an image associated with an entity in a graphical context provided by
      * graphics
@@ -110,7 +102,6 @@ public class Sketcher {
         }
         return 0;
     }
-
     /**
      * Draws a rectangular background with a specific color and transparency in the
      * graphic context provided by graphics
@@ -144,7 +135,6 @@ public class Sketcher {
         graphics2D.fill(bounds); // Fills the rectangle defined by the bounds with the specified background color
                                  // and transparency
     }
-
     /**
      * Draws text in a graphical context provided by graphics
      * 

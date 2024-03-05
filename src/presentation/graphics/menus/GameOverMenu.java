@@ -29,7 +29,6 @@ public class GameOverMenu extends View {
         this.createButtons();
         modal.add(this);
     }
-
     /**
      * Creates buttons for the GameOverMenu and sets their positions and cursors.
      */
@@ -49,7 +48,6 @@ public class GameOverMenu extends View {
         this.button3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(button3);
     }
-
    /**
      * Sets the ActionListener for the "Restart" button.
      *
@@ -58,7 +56,6 @@ public class GameOverMenu extends View {
     public void setRestarListener(ActionListener listener) {
         this.button1.addActionListener(listener);
     }
-
     /**
      * Sets the action listener for the "Play Again" button.
      *
@@ -67,7 +64,6 @@ public class GameOverMenu extends View {
     public void setPlayAgainListener(ActionListener listener) {
         this.button2.addActionListener(listener);
     }
-
     /**
      * Sets the action listener for the "Exit" button.
      *
@@ -76,7 +72,6 @@ public class GameOverMenu extends View {
     public void setExitListener(ActionListener listener) {
         this.button3.addActionListener(listener);
     }
-
     /**
      * Overrides the paintComponent method to draw text on the panel.
      *
@@ -89,7 +84,6 @@ public class GameOverMenu extends View {
         this.sketcher.drawText(graphics, this, Color.BLACK, "Score: " + score, Constant.SCREEN_WIDTH / 2,
                 Constant.SCREEN_HEIGHT / 2 + 160);
     }
-
     /**
      * Updates the message and score of the game over menu.
      *
@@ -102,7 +96,6 @@ public class GameOverMenu extends View {
         this.msg = message;
         return this.modal;
     }
-
     /**
      * Returns the modal component.
      * @return The modal component.

@@ -16,14 +16,14 @@ public class MapLimit {
         if (level != null) {
             return level.getNumberRows();
         }
-        return 14; // Default or error handling
+        return 0; // Default or error handling
     }
 
     public static int getMapWidth() {
         if (level != null) {
             return level.getNumberCols();
         }
-        return 14; // Default or error handling
+        return 0; // Default or error handling
     }
 
     public static final int MAP_WIDTH = getMapWidth();
