@@ -1,5 +1,9 @@
 package logic.entities;
 
+/**
+ * represents the indestructible block, with methods to obtain its level identifier
+ * and to initialize it with a unique identifier and specific positions on the map
+ */
 public class IndestructibleBlock extends Entity {
     /**
      * Constructs an Indestructible object with the given parameters.

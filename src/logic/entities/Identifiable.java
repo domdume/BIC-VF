@@ -1,5 +1,9 @@
 package logic.entities;
 
+/**
+ * It has a set of methods that allow you to obtain information about the level id, the
+ * image path, and a string representation of an entity in a game or other context
+ */
 public interface Identifiable {
     /**
      * it obtains the number designated for the class

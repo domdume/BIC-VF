@@ -125,8 +125,7 @@ public class Sketcher {
      * @param transparencyBackGroundValue float that represents the transparency of
      *                                    the background
      */
-    public void drawBackground(Graphics graphics, Rectangle bounds, Color backGroundColor,
-                               float transparencyBackGroundValue) {
+    public void drawBackground(Graphics graphics, Rectangle bounds, Color backGroundColor, float transparencyBackGroundValue) {
         // Converts the Graphics object to a Graphics2D object, allowing access to
         // additional functionality and advanced drawing methods
         Graphics2D graphics2D = (Graphics2D) graphics;

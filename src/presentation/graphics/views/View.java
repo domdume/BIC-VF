@@ -8,8 +8,7 @@ import presentation.graphics.Sketcher; // Provides functionality for drawing in 
 
 /**
  * Represents a graphical view in the game. implements interfaces to handle
- * events and provides methods to set
- * transparency and get the view as a graphical component. Additionally, it uses
+ * events and provides methods to set transparency and get the view as a graphical component. Additionally, it uses
  * a Sketcher object to draw in the view
  */
 public class View extends JPanel implements ActionListener, Modifiable {

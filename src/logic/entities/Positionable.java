@@ -1,5 +1,8 @@
 package logic.entities;
 
+/**
+ * Allows to define and obtain the positions on the X axis and the Y axis
+ */
 public interface Positionable {
     /**
      * sets out a number as position

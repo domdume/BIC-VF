@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import logic.results.GameResult;
 import logic.results.None;
 
+/**
+ * Provides methods to manage the movement and collision logic of an entity in a game
+ */
 public class Entity extends BaseEntity {
 
     public Entity(String name, int id, int x, int y) {

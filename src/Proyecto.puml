@@ -3,7 +3,7 @@
 package common{
     class MapLimit{
         + level: Level
-        + setLevet(level : Level)
+        + setLevel(level : Level)
         + getMapHeight()
         + getMapWidth()
         + MAP_WIDTH: int
@@ -387,7 +387,7 @@ GameFrame --|> JFrame
 MapLimit ..> levels
 FileHandler ..> FileMode
 FileHandler ..> Entity
-FileHandler ..> Level
+FileHandler --> Level
 Enemy ..> Direction
 Entity ..> GameResult
 Entity ..> None
@@ -398,7 +398,7 @@ IceCream ..> None
 IceCream ..> Points
 EntityGenerator ..> entities
 EntityGenerator ..> Level
-Game ..> Entity
+Game --> Entity
 Game ..> IceCream
 Game ..> EntityGenerator
 Game ..> Level
@@ -415,11 +415,12 @@ PauseMenu ..> View
 View ..> Sketcher
 Sketcher ..> Constant
 Sketcher ..> Entity
-GamePanel ..> Game
-GamePanel ..> Sketcher
-GamePanel ..> GameOverMenu
-GamePanel ..> MainMenu
-GamePanel ..> PauseMenu
+GamePanel --> Game
+GamePanel --> Sketcher
+GamePanel --> GameOverMenu
+GamePanel --> MainMenu
+GamePanel --> PauseMenu
+GamePanel --> CustomKeyAdapter
 GameFrame ..> GamePanel
 LevelManager..>Level
 

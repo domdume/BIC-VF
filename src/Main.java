@@ -1,4 +1,3 @@
-import logic.Game;
 import presentation.GameFrame;
 
 public class Main {
