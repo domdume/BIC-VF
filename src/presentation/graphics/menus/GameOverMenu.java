@@ -8,6 +8,9 @@ import javax.swing.*;
 import presentation.Constant;
 import presentation.graphics.views.View;
 
+/**
+ * The GameOverMenu class represents the game over menu displayed when the player loses the game.
+ */
 public class GameOverMenu extends View {
 
     private JButton button1;

@@ -7,7 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-//import presentation.GameLogic;
+/**
+ * The MainMenu class represents the main menu of the game.
+ * It extends the View class and provides functionality for displaying buttons
+ * to navigate through the game's options.
+ */
 public class MainMenu extends View {
     private JButton button1;
     private JButton button2;

@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import presentation.Constant;
 import presentation.graphics.views.View;
 
+/**
+ * The PauseMenu class represents the pause menu displayed during gameplay.
+ * It extends the View class and provides functionality for pausing the game,
+ * saving progress, loading saved games, and exiting the game.
+ */
 public class PauseMenu extends View {
 
     private JButton resumeBtn;
