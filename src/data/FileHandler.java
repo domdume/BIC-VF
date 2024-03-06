@@ -1,7 +1,7 @@
 package data;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.*; // Input and Output
+import java.util.Scanner; // methods to parse text into primitive types and Strings using regular expressions
 import java.util.ArrayList;
 
 import common.FileMode;
@@ -10,9 +10,13 @@ import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
 
+/**
+ * Provides functionality to save and load game state to and
+ * from files, allowing the use of two formats: text and serialized
+ */
 public class FileHandler {
-    private FileMode mode;
-    private int groundUsed = 30;
+    private FileMode mode; // Indicates the mode in which the game is to be saved or loaded
+    private int groundUsed = 30; // represents the amount of space a unit takes up in the game
 
     public FileHandler(FileMode mode) {
         this.mode = mode;

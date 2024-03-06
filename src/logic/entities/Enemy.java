@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import common.Direction;
 
+/**
+ * Represents the enemy in the game, with methods to handle its movement and
+ * collisions with other in-game objects (ice blocks and indestructibles)
+ */
 public class Enemy extends Entity {
     private int forward;
     private Direction direction;

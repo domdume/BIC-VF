@@ -9,6 +9,9 @@ import logic.results.GameResult;
 import logic.results.None;
 import logic.results.Points;
 
+/**
+ * It allows the player to move around the board, throw ice and destroy it, and handle collisions with other entities
+ */
 public class IceCream extends Entity {
     /**
      * Constructs an Ice Cream object with the given parameters
