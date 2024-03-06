@@ -11,6 +11,7 @@ public class IceBlock extends Entity {
     public IceBlock(int id, int x, int y) {
         super("Ice", id, x, y);
     }
+
     /**
      * Gets the level identifier associated with ice entities.
      *

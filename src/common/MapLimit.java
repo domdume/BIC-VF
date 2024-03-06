@@ -1,4 +1,5 @@
 package common;
+
 import logic.levels.*;
 
 public class MapLimit {
@@ -6,6 +7,7 @@ public class MapLimit {
 
     /**
      * The method makes use of the information of the currently active level
+     *
      * @param currentLevel level number
      */
     public void setLevel(Level currentLevel) {
@@ -29,22 +31,6 @@ public class MapLimit {
     public final int MAP_WIDTH = getMapWidth();
 
     public final int MAP_HEIGHT = getMapHeight();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static final int MAP_ROW = 420;

@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage; // This class represents an image saved in 
 
 import presentation.Constant;
 import logic.entities.Entity;
+
 /**
  * The class is for drawing graphics in the Java GUI game. Provides methods for
  * drawing the components of the game (entities,
@@ -16,24 +17,26 @@ import logic.entities.Entity;
  */
 public class Sketcher {
     private JPanel panel; // Saves the panel on which graphic elements are drawn.
+
     /**
      * The constructor takes a panel as a parameter and assigns it to the attribute
-     * 
+     *
      * @param enteredPanel used to set any panel on which graphic elements will be
      *                     drawn
      */
     public Sketcher(JPanel enteredPanel) {
         this.panel = enteredPanel;
     }
+
     /**
      * Iterates through the list of entities and draws each one by calling the
      * drawImage method
-     * 
+     *
      * @param graphics This graphics context allows the drawEntities method to draw
      *                 the entities in the appropriate panel of the application
      * @param entities represents each individual entity found in the list
      * @return The method returns 0 if all entities are drawn correctly and 1 if
-     *         there is at least one entity that cannot be drawn
+     * there is at least one entity that cannot be drawn
      */
     public int drawEntities(Graphics graphics, ArrayList<Entity> entities) {
         int tmp = 0;
@@ -42,9 +45,10 @@ public class Sketcher {
         }
         return tmp;
     }
+
     /**
      * Draws the score in the graphical context specified by graphics.
-     * 
+     *
      * @param graphics graphic context in which the drawing is made
      * @param points   represents the score that will be drawn in the graphical
      *                 context
@@ -59,20 +63,22 @@ public class Sketcher {
         // Draw the scoring chain in the graphical context (String - coordinates - size)
         graphics.drawString(score, placeTheTextAtTheTopRightOfTheScreen(metrics, score), getSizeOfTheFont(graphics));
     }
+
     /**
      * gets the size of the font used
-     * 
+     *
      * @param graphics graphic context from which the font size is obtained
      * @return Returns an integer of the size of the font currently configured on
-     *         the graphic context
+     * the graphic context
      */
     private static int getSizeOfTheFont(Graphics graphics) {
         return graphics.getFont().getSize();
     }
+
     /**
      * Calculates the x position where the text should be drawn at the top right of
      * the screen
-     * 
+     *
      * @param metrics Object FontMetrics used to measure properties of the source
      * @param score   String representing the score to be displayed on the screen
      * @return returns an integer representing the X coordinate
@@ -80,10 +86,11 @@ public class Sketcher {
     private static int placeTheTextAtTheTopRightOfTheScreen(FontMetrics metrics, String score) {
         return Constant.SCREEN_WIDTH - metrics.stringWidth(score) - Constant.UNIT_SIZE * 2;
     }
+
     /**
      * Draws an image associated with an entity in a graphical context provided by
      * graphics
-     * 
+     *
      * @param panelParent JPanel that represents the panel on which the image is
      *                    drawn
      * @param graphics    Graphics that represents the graphic context in which the
@@ -102,10 +109,11 @@ public class Sketcher {
         }
         return 0;
     }
+
     /**
      * Draws a rectangular background with a specific color and transparency in the
      * graphic context provided by graphics
-     * 
+     *
      * @param graphics                    Object Graphics that represents the
      *                                    graphic context in which the drawing will
      *                                    be made
@@ -118,7 +126,7 @@ public class Sketcher {
      *                                    the background
      */
     public void drawBackground(Graphics graphics, Rectangle bounds, Color backGroundColor,
-            float transparencyBackGroundValue) {
+                               float transparencyBackGroundValue) {
         // Converts the Graphics object to a Graphics2D object, allowing access to
         // additional functionality and advanced drawing methods
         Graphics2D graphics2D = (Graphics2D) graphics;
@@ -133,11 +141,12 @@ public class Sketcher {
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparencyBackGroundValue));
         graphics2D.setColor(backGroundColor); // Sets the background fill color to the color specified by bgColor
         graphics2D.fill(bounds); // Fills the rectangle defined by the bounds with the specified background color
-                                 // and transparency
+        // and transparency
     }
+
     /**
      * Draws text in a graphical context provided by graphics
-     * 
+     *
      * @param graphics  Graphics object that represents the graphic context in which
      *                  the text will be drawn
      * @param panel     JPanel object that represents the panel on which the text

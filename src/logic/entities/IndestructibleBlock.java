@@ -11,6 +11,7 @@ public class IndestructibleBlock extends Entity {
     public IndestructibleBlock(int id, int x, int y) {
         super("Indestructible", id, x, y);
     }
+
     /**
      * Retrieves the level ID associated with the Indestructible entity.
      *

@@ -14,6 +14,7 @@ public class PauseMenu extends View {
     private JButton loadBtn;
     private JButton exitBtn;
     private Modal modal;
+
     /**
      * Constructs a PauseMenu instance with default settings.
      */
@@ -26,6 +27,7 @@ public class PauseMenu extends View {
         this.createButtons();
         modal.add(this);
     }
+
     /**
      * Sets the action listener for the save button.
      *
@@ -34,6 +36,7 @@ public class PauseMenu extends View {
     public void setSaveAL(ActionListener listener) {
         this.saveBtn.addActionListener(listener);
     }
+
     /**
      * Sets the action listener for the load button.
      *
@@ -42,6 +45,7 @@ public class PauseMenu extends View {
     public void setLoadAL(ActionListener listener) {
         this.loadBtn.addActionListener(listener);
     }
+
     /**
      * Sets the action listener for the resume button.
      *
@@ -50,6 +54,7 @@ public class PauseMenu extends View {
     public void setResumeAL(ActionListener listener) {
         this.resumeBtn.addActionListener(listener);
     }
+
     /**
      * Sets the action listener for the exit button.
      *
@@ -58,6 +63,7 @@ public class PauseMenu extends View {
     public void setExitAL(ActionListener listener) {
         this.exitBtn.addActionListener(listener);
     }
+
     /**
      * Creates and initializes the buttons for the PauseMenu.
      */
@@ -82,6 +88,7 @@ public class PauseMenu extends View {
         this.exitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(exitBtn);
     }
+
     /**
      * Returns the modal component.
      *

@@ -36,7 +36,7 @@ package data{
          - saveSerializedLevel(entities : ArrayList<Entity>, currentScore : int, levelIndex : int): void
          - loadSerializedLevel(): Level
          + loadEntityFile(): Level
-         - getEntityValues(entity : Entity, map : int[][]): int[][]
+         - getEntityValue(entity : Entity, map : int[][]): int[][]
          - entitiesToLevel(entities : ArrayList<Entity>, rows : int, cols : int, currentScore : int, levelIndex : int): Level
          - textToLevel(txt : String): Level
          + txtToMatrix(input : String): int[][]
@@ -141,7 +141,7 @@ package logic{
             + generate(level: Level): ArrayList<Entity>
             - Params(row: int, col: int, val: int): record
         }
-        class Values{
+        class Value{
             - params: Params
             - getX(): int
             - getY(): int
@@ -402,7 +402,7 @@ Game ..> Entity
 Game ..> IceCream
 Game ..> EntityGenerator
 Game ..> Level
-Game ..> LevelManager
+Game --> LevelManager
 Game ..> Death
 Game ..> Points
 GameOverMenu ..> Constant
@@ -421,5 +421,7 @@ GamePanel ..> GameOverMenu
 GamePanel ..> MainMenu
 GamePanel ..> PauseMenu
 GameFrame ..> GamePanel
+LevelManager..>Level
+
 
 @enduml

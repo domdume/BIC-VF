@@ -1,6 +1,7 @@
 package presentation.graphics.menus;
 
 import java.awt.*;
+
 import presentation.graphics.views.View;
 
 public class Modal extends View {

@@ -48,7 +48,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public GamePanel() {
         //
         this.setLayout(null); // Components within GamePanel will be able to be positioned using coordinates
-                              // (They will not be subject to any specific layout manager)
+        // (They will not be subject to any specific layout manager)
         this.setBackground(Color.WHITE);
         this.setFocusable(true); // Will be able to respond to keyboard and mouse events when active
         this.setPreferredSize(new Dimension(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT));
@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements ActionListener {
         this.fileHandler = new FileHandler(FileMode.SERIALIZABLE);
 
         this.timer = new Timer(DELAY, this); // Timer instance with a defined delay and sets the GamePanel as the object
-                                             // that listens to the timer's action events.
+        // that listens to the timer's action events.
         this.logic = new Game();
         this.sketcher = new Sketcher(this);
         this.setExternalListeners();
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Adds the game over menu with a specific message.
-     * 
+     *
      * @param msg The message to display.
      * @return An integer value (0).
      */
@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Handles the menu display based on key events.
-     * 
+     *
      * @param e The KeyEvent representing the key pressed.
      * @return An integer value based on menu visibility.
      */
@@ -166,7 +166,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Displays the pause menu.
-     * 
+     *
      * @return An integer value (0).
      */
     private int showMenu() {
@@ -177,7 +177,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Displays the main menu.
-     * 
+     *
      * @return An integer value (0).
      */
     private int showMainMenu() {
@@ -187,7 +187,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Hides the pause menu.
-     * 
+     *
      * @return An integer value (1).
      */
     private int hideMenu() {
@@ -212,20 +212,20 @@ public class GamePanel extends JPanel implements ActionListener {
 
     /**
      * Draws the graphical components on the panel
-     * 
+     *
      * @param graphics represents the graphical context in which the drawings will
      *                 be made in the component
      */
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics); // Ensures that the component is painted correctly before performing any other
-                                        // drawing operations
+        // drawing operations
         draw(graphics); // Contains the logic to draw game elements in the graphical context provided by
-                        // g
+        // g
     }
 
     /**
      * Checks if the game is running to call the sketch(g) method
-     * 
+     *
      * @param graphics is the graphical context that provides the drawing
      *                 capabilities necessary to perform drawing operations
      * @return Returns the sketch(g) call and this returns 0, otherwise returns 1
@@ -233,14 +233,14 @@ public class GamePanel extends JPanel implements ActionListener {
     private int draw(Graphics graphics) {
         return logic.getRunning() ? this.sketch(graphics)
                 : !logic.getAlive() ? this.addGameOver("Game Over")
-                        : logic.getLastLevelCompleted() ? this.addGameOver("Game Completed") : 1;
+                : logic.getLastLevelCompleted() ? this.addGameOver("Game Completed") : 1;
     }
 
     /**
      * Draws the game entities and score on the GamePanel. Call sketcher methods to
      * make
      * the drawings and then remove the gameOverMenu component from the GamePanel.
-     * 
+     *
      * @param graphics performs drawing operations in the graphical context provided
      *                 by the Java window system (This
      *                 allows the method to draw game elements)
@@ -256,7 +256,7 @@ public class GamePanel extends JPanel implements ActionListener {
     /**
      * Is called every time an action event occurs, in this case, every time the
      * timer is activated
-     * 
+     *
      * @param actionEvent the event to be processed
      */
     @Override
@@ -267,11 +267,11 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private class CustomKeyAdapter extends KeyAdapter {
-        
+
         /**
-         * Invoked when a key is pressed. 
+         * Invoked when a key is pressed.
          * It triggers methods to handle game actions and menu visibility based on the key event.
-         * 
+         *
          * @param e The KeyEvent representing the key pressed.
          */
         @Override

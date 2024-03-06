@@ -1,4 +1,5 @@
 package data;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,18 +9,22 @@ import common.MapLimit;
 import logic.entities.Entity;
 import logic.levels.Level;
 import logic.levels.Level1;
+
 public class FileHandler {
     private FileMode mode;
     private int groundUsed = 30;
+
     public FileHandler(FileMode mode) {
         this.mode = mode;
     }
+
     /**
      * The method saves the current game state by calling the appropriate method based on the current
      * game mode, either saving the data as a text file or as a serialized objec.
-     * @param entities An ArrayList of Entity objects.
+     *
+     * @param entities     An ArrayList of Entity objects.
      * @param currentScore An integer representing the current score.
-     * @param levelIndex An integer representing the index of the current level.
+     * @param levelIndex   An integer representing the index of the current level.
      */
     public void saveGame(ArrayList<Entity> entities, int currentScore, int levelIndex, MapLimit mapLimit) {
         switch (this.mode) {
@@ -32,8 +37,10 @@ public class FileHandler {
                 break;
         }
     }
+
     /**
      * The method loads the file
+     *
      * @return new Level
      */
     public Level loadGame() {
@@ -48,6 +55,7 @@ public class FileHandler {
                 return new Level1();
         }
     }
+
     /**
      * it's responsible for storing an entity's information in a file.
      *
@@ -80,6 +88,7 @@ public class FileHandler {
             // Just Skip
         }
     }
+
     /**
      * it's responsible for storing an entity's information in a file.
      *
@@ -102,6 +111,7 @@ public class FileHandler {
             // Just Skip
         }
     }
+
     /**
      * reads the game level serialized file and parses it in order to load the
      * position of game entities and score achieved at game saving time.
@@ -121,6 +131,7 @@ public class FileHandler {
         }
         return level == null ? new Level1() : level;
     }
+
     /**
      * reads the game entity file and parses it in order to load the position of
      * game entities
@@ -145,6 +156,7 @@ public class FileHandler {
         return fullData == "" ? new Level1() : this.textToLevel(fullData);
 
     }
+
     /**
      * It uses the coordinates of the entity to calculate the position
      * in the matrix and assigns the entity level identifier to that position in the
@@ -163,6 +175,7 @@ public class FileHandler {
         map[y][x] = id;
         return map;
     }
+
     /**
      * Converts a list of entities into a game level.
      *
@@ -182,6 +195,7 @@ public class FileHandler {
         level.init(map, currentScore, levelIndex);
         return level;
     }
+
     /**
      * Turns a text into a Level object in the game.
      *
@@ -210,6 +224,7 @@ public class FileHandler {
         // Returns the created Level object.
         return level;
     }
+
     /**
      * Converts a text string to a two-dimensional array of integers.
      *
