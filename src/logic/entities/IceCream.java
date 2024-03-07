@@ -340,6 +340,13 @@ public class IceCream extends Entity {
         }
     }
 
+//    private void castDestroySpell(KeyEvent e, ArrayList<Entity> entities) {
+//        boolean spellCasted = false;
+//        for (int i = 0; i < entities.size() && !spellCasted; i++) {
+//            spellCasted = isEnemyEntity(entities, i) && handleSpellCasting(entities, i, e);
+//        }
+//    }
+
     /**
      * Spell to destroy an ice entity at the location determined by the key event
      *
@@ -364,4 +371,9 @@ public class IceCream extends Entity {
     private static boolean isIceEntity(ArrayList<Entity> entities, int index) {
         return entities.get(index) != null && entities.get(index) instanceof IceBlock;
     }
+
+//    private static boolean isEnemyEntity(ArrayList<Entity> entities, int index) {
+//        return entities.get(index) != null && entities.get(index) instanceof Enemy;
+//    }
+
 }
