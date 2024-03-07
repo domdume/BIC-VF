@@ -49,6 +49,7 @@ public class Enemy extends Entity {
         this.forward *= iceFound ? -1 : 1;
         return iceFound;
     }
+    // para que no pueda atravesar fruta se le copia la función y se le hace un instanceof Fruit
 
     /**
      * the method checks if the object is on an indestructible object surface at the
