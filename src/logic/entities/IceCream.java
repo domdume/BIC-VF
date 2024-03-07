@@ -74,6 +74,7 @@ public class IceCream extends Entity {
         }
         return this.withinBounds(x, y) && !foundIce;
     }
+    //agregar if de instanceof Fruit para que la fruta sea static
     /**
      * Checks if the IceCream entity can move to the specified position (x, y)
      * without colliding with an IndestructibleBlock entity.
