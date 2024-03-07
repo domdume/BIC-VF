@@ -83,6 +83,7 @@ public final class EntityGenerator {
             entityDictionary.put(5, new Enemy(this.getId(), this.getX(), this.getY()));
             entityDictionary.put(6, new IceCream(this.getId(), this.getX(), this.getY()));
             entityDictionary.put(7, new IceCream(this.getId(), this.getX(), this.getY()));
+            entityDictionary.put(9, new IceCream2(this.getId(), this.getX(), this.getY()));
 
             return entityDictionary;
         }

@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import logic.entities.Entity;
 import logic.entities.IceCream;
+import logic.entities.IceCream2;
 import logic.generators.EntityGenerator;
 import logic.levels.Level;
 import logic.levels.LevelManager;
@@ -277,6 +278,7 @@ public class Game {
         int collisionsChecked = 0;
         for (Entity entity : this.entities) {
             collisionsChecked = isTheMainPlayer(entity) ? this.handlePlayerCollitions(entity) : 1;
+            collisionsChecked = isTheMainPlayerTwo(entity)? this.handlePlayerCollitions(entity) : 1;
         }
         return collisionsChecked;
     }
@@ -290,7 +292,9 @@ public class Game {
     private static boolean isTheMainPlayer(Entity entity) {
         return entity != null && entity instanceof IceCream;
     }
-
+    private static boolean isTheMainPlayerTwo (Entity entity){
+        return entity != null && entity instanceof IceCream2;
+    }
     /**
      * Generates entities for the current level of the game.
      *

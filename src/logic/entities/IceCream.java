@@ -112,7 +112,7 @@ public class IceCream extends Entity {
         return entity != null && isSamePosition(this.getPositionX(), this.getPositionY(), entity)
                 ? entity instanceof Enemy ? new Death() : entity instanceof Fruit ? new Points() : new None()
                 : new None();
-    }
+    }//para que al recoger una fruta se muera hacer new Death en vez de new Points, si funciona
 
     /**
      * calculates and returns a new X coordinate for an entity that will move in a
@@ -174,13 +174,13 @@ public class IceCream extends Entity {
     }
 
     private int getX(ArrayList<Entity> entities, int code, int x, int y) {
-        return code == KeyEvent.VK_LEFT ? getNewX(Direction.LEFT, x, y, entities)
-                : code == KeyEvent.VK_RIGHT ? getNewX(Direction.RIGHT, x, y, entities) : x;
-    }
+        return code == KeyEvent.VK_A ? getNewX(Direction.LEFT, x, y, entities)
+                : code == KeyEvent.VK_D ? getNewX(Direction.RIGHT, x, y, entities) : x;
+    }//aquí le voy a cambiar para poder hacer el segundo jugador
 
     private int getY(ArrayList<Entity> entities, int code, int x, int y) {
-        return code == KeyEvent.VK_UP ? getNewY(Direction.UP, x, y, entities)
-                : code == KeyEvent.VK_DOWN ? getNewY(Direction.DOWN, x, y, entities) : y;
+        return code == KeyEvent.VK_W ? getNewY(Direction.UP, x, y, entities)
+                : code == KeyEvent.VK_S ? getNewY(Direction.DOWN, x, y, entities) : y;
     }
     // ID: 0 -> Create, ID: 1 -> Destroy
 
@@ -192,8 +192,8 @@ public class IceCream extends Entity {
      * @param e the key associated to the spell
      */
     private void setSpell(KeyEvent e) {
-        this.setID(e.getKeyCode() == KeyEvent.VK_SPACE ? this.iD == 0 ? 1 : 0 : this.iD);
-    }
+        this.setID(e.getKeyCode() == KeyEvent.VK_F ? this.iD == 0 ? 1 : 0 : this.iD);
+    }//para dos players aquí le ponen .VK_F  antes estaba VK_SPACE
 
     /**
      * The method adds an ice entity at a given position on the board, as long as
@@ -251,8 +251,8 @@ public class IceCream extends Entity {
      * @return returns an address based on the code of the pressed key.
      */
     private Direction getKeyXDirection(KeyEvent e) {
-        return e.getKeyCode() == KeyEvent.VK_A ? Direction.LEFT
-                : e.getKeyCode() == KeyEvent.VK_D ? Direction.RIGHT : Direction.NONE;
+        return e.getKeyCode() == KeyEvent.VK_G ? Direction.LEFT
+                : e.getKeyCode() == KeyEvent.VK_J ? Direction.RIGHT : Direction.NONE;
     }
 
     /**
@@ -264,8 +264,8 @@ public class IceCream extends Entity {
      * @return returns an address based on the code of the pressed key.
      */
     private Direction getKeyYDirection(KeyEvent e) {
-        return e.getKeyCode() == KeyEvent.VK_S ? Direction.DOWN
-                : e.getKeyCode() == KeyEvent.VK_W ? Direction.UP : Direction.NONE;
+        return e.getKeyCode() == KeyEvent.VK_H ? Direction.DOWN
+                : e.getKeyCode() == KeyEvent.VK_Y ? Direction.UP : Direction.NONE;
     }
 
     /**
