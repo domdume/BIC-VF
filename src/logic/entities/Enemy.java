@@ -22,6 +22,8 @@ public class Enemy extends Entity {
         this.forward = 1;
     }
 
+
+
     /**
      * Gets the level identifier of the enemy.
      *

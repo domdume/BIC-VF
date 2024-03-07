@@ -217,6 +217,12 @@ public class IceCream extends Entity {
         return addedIce;
     }
 
+//    private boolean addEnemy(int index, int x, int y, ArrayList<Entity> entities) {
+//        boolean addedEnemy = this.iD == 0 && entities.get(index) == null;
+//        entities.set(index, addedEnemy ? new Enemy (0, x, y) : entities.get(index));
+//        return addedEnemy;
+//    }
+
     /**
      * The method removes an ice entity at a given position on the board, as long as
      * the entity calling the method
@@ -240,6 +246,13 @@ public class IceCream extends Entity {
         entities.set(index, iceRemoved ? null : entities.get(index));
         return iceRemoved;
     }
+
+//    private boolean removeEnemy(int index, int x, int y, ArrayList<Entity> entities) {
+//        boolean iceRemoved = this.iD == 1 && entities.get(index) != null
+//                && y == entities.get(index).getPositionY() && x == entities.get(index).getPositionX();
+//        entities.set(index, iceRemoved ? null : entities.get(index));
+//        return iceRemoved;
+//    }
 
     /**
      * an address based on the code of the pressed key. The function is used to
@@ -281,6 +294,10 @@ public class IceCream extends Entity {
     private boolean castSpell(int id, ArrayList<Entity> entities, int i, int x, int y) {
         return id == 0 ? this.addIce(i, x, y, entities) : this.removeIce(i, x, y, entities);
     }
+
+    //private boolean castSpell(int id, ArrayList<Entity> entities, int i, int x, int y) {
+    //    return id == 0 ? this.addEnemy(i, x, y, entities) : this.removeEnemy(i, x, y, entities);
+    //}
 
     /**
      * Handles the process of spell casting, determining the new coordinates based

@@ -1,5 +1,7 @@
 package logic.entities;
 
+import common.Direction;
+
 public class IceBlock extends Entity {
     /**
      * Constructs an Ice object with the given parameters.
@@ -12,6 +14,7 @@ public class IceBlock extends Entity {
         super("Ice", id, x, y);
     }
 
+
     /**
      * Gets the level identifier associated with ice entities.
      *
@@ -19,6 +22,7 @@ public class IceBlock extends Entity {
      */
     @Override
     public int getLevelId() {
+
         return 1;
     }
 }
