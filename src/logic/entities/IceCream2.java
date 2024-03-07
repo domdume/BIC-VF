@@ -20,7 +20,6 @@ public class IceCream2 extends Entity{
     public IceCream2(int id, int x, int y) {
         super("IceCream", id, x, y);
     }
-
     /**
      * handles keyboard events and performs different actions in a game or
      * application
@@ -38,7 +37,6 @@ public class IceCream2 extends Entity{
         this.castCreateSpell(e, entities);
         return 0;
     }
-
     @Override
     public void setID(int iD) {
         super.setID(iD);
@@ -48,7 +46,6 @@ public class IceCream2 extends Entity{
     public int getLevelId() {
         return this.iD == 0 ? 9 : 10;
     }
-
     /**
      * Checks if the entity can move to the specified position (x, y) without
      * colliding with an IceBlock entity.

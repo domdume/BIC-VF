@@ -23,7 +23,7 @@ public class IceCream extends Entity {
     public IceCream(int id, int x, int y) {
         super("IceCream", id, x, y);
     }
-
+    //en ice Cream le pones enemy para cambiar las images y en enemy el ice
     /**
      * handles keyboard events and performs different actions in a game or
      * application
@@ -74,7 +74,6 @@ public class IceCream extends Entity {
         }
         return this.withinBounds(x, y) && !foundIce;
     }
-
     /**
      * Checks if the IceCream entity can move to the specified position (x, y)
      * without colliding with an IndestructibleBlock entity.

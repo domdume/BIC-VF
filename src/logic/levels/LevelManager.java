@@ -33,6 +33,7 @@ public class LevelManager {
         levelDictionary.put(1, new Level1());
         levelDictionary.put(2, new Level2());
         levelDictionary.put(3, new Level3());
+        levelDictionary.put(4, new Level4());
         return levelDictionary;
     }
 }

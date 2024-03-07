@@ -267,7 +267,6 @@ public class Game {
         this.setRunning(isRunning);
         return scoreAdjusted;
     }
-
     /**
      * Checks collisions of entities in the game, particularly focusing on the main Player.
      *
